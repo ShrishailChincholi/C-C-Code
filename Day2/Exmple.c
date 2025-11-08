@@ -98,7 +98,7 @@ int main(){
     printf("%d \n",sum);
   return 0;
 }
-//Output 
+// Output 
 // Enter a number :5
 // 15 
 
@@ -138,3 +138,27 @@ int main(){
 // Output
 // Enter A number : 5
 // The Factorial is 120 
+
+
+// wcp Take i/p user when stop user enter odd number Using For Loop
+#include<stdio.h>
+int main(){
+    int n;
+   for (int i = 0; i <=1; i++)
+   {
+     printf("Enter a number : ");
+        scanf("%d",&n);
+        if (n %2 != 0)
+        {
+            break;
+        }
+   }
+   printf("You Enter a Odd number ");
+   
+  return 0;
+}
+
+// Output
+// Enter a number : 4
+// Enter a number : 5
+// You Enter a Odd number 
