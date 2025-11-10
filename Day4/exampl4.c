@@ -38,7 +38,6 @@ float result(float sci,float math,float hindi ){
 // Output
 // Parcentage of Student is 66.666664
 
-
 // // WCP a function to print HOT or COLD depending on the temperature user enter
 #include<stdio.h>
 
@@ -59,8 +58,32 @@ float hotclod(float temp){
     }else{
         printf("Its Cold %f",temp);
     }
-   
+
 }
 
-//// Output 
-// // Its Hot67.000000
+// Output
+// Its Hot67.000000
+
+// // fibonacies
+#include <stdio.h>
+int main()
+{
+    int n;
+    printf("Enter a number n>2 : ");
+    scanf("%d", &n);
+
+    int fibo[n];
+    fibo[0] = 0;
+    fibo[1] = 1;
+    printf(" %d  %d ", fibo[0], fibo[1]);
+    for (int i = 2; i < n; i++)
+    {
+        fibo[i] = fibo[i - 1] + fibo[i - 2];
+        printf(" %d ", fibo[i]);
+    }
+    printf("\n");
+}
+
+// //Output
+// //Enter a number n>2 : 5
+//  //0  1  1  2  3 
