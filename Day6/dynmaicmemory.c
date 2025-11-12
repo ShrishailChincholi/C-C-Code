@@ -58,8 +58,8 @@ int main(){
 
 }
 
-output
-0 0 0 0
+// // output
+//  // 0 0 0 0
 
 #include <stdio.h>
 #include <stdlib.h>
