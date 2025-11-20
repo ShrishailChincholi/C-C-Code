@@ -163,11 +163,85 @@ int main()
 }
 
 // // OutPut
-// Enter A Key to Find the Array Number : 
+// Enter A Key to Find the Array Number :
 //  50
 // You Enter Key Value  = 50 and the find the Key = 50
 
-
-// //Enter A Key to Find the Array Number : 
+// //Enter A Key to Find the Array Number :
 // // 60
-// //Not Valid a number 
+// //Not Valid a number
+
+// // Linear and Binary search
+#include <stdio.h>
+int main()
+{
+    int key, i, n, choice;
+    printf("Enter a n values :-");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter a number elements");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    };
+    printf("Enter A key value");
+    scanf("%d", &key);
+    printf("---Seraching Teachineques---\n");
+    printf("1,Choice Is for leanearsearch\n");
+    printf("2,Choice Is For Binnary Search\n");
+    printf("Enter Your Choices\n");
+    scanf("%d", &choice);
+    if (choice == 1)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (key == arr[i])
+            {
+                printf("Element Found at mid postion %d\n",i+1);
+                return 0;
+            }
+        }
+        printf("Invalid elements Number");
+    }
+    else if (choice == 2)
+    {
+        int low = 0, high = n - 1, mid;
+        while (low <= high)
+        {
+            mid = (low + high) / 2;
+            if (arr[mid]==key)
+            {
+                printf("Element Found at mid postion %d\n",mid+1);
+                return 0;
+            }else if (arr[mid]<key)
+            {
+                low = mid+1;
+            }else
+            {
+                high= mid-1;
+            }
+            
+        }
+        printf("Invalid elements Number ");
+    }else
+    {
+        printf("Invalid chioce ");
+    }
+    return 0;
+    
+}
+
+// // OutPut
+// Enter a n values :-5
+// Enter a number elements10
+// 20
+// 30
+// 40
+// 50
+// Enter A key value50
+// ---Seraching Teachineques---
+// 1,Choice Is for leanearsearch
+// 2,Choice Is For Binnary Search
+// Enter Your Choices
+// 2
+// Element Found at mid postion 5
