@@ -220,7 +220,7 @@ int main()
             {
                 high= mid-1;
             }
-            
+
         }
         printf("Invalid elements Number ");
     }else
@@ -228,7 +228,7 @@ int main()
         printf("Invalid chioce ");
     }
     return 0;
-    
+
 }
 
 // // OutPut
@@ -260,10 +260,10 @@ int main(){
     }
     for (int  i = 0; i < n; i++)
     {
-     sum = arr[i]+sum ; 
+     sum = arr[i]+sum ;
     }
     printf("Sum of array elemnts :- %d\n",sum);
-    
+
 }
 
 // // Output
@@ -275,7 +275,6 @@ int main(){
 // 5
 // 6
 // Sum of array elemnts :- 20
-
 
 // // Merahe sort
 #include<stdio.h>
@@ -295,7 +294,7 @@ void merage(int arr[],int left,int mid,int right){
          temp[k++] = arr[i++];
     while(j<=right)
         temp[k++] = arr[j++];
-    
+
     for(i=left,k=0;i<=right;i++,k++)
         arr[i]=temp[k];
 }
@@ -309,7 +308,7 @@ void mergesort(int arr[],int left,int right){
 
         merage(arr,left,mid,right);
     }
-    
+
 }
 
 int main(){
@@ -323,10 +322,9 @@ int main(){
     printf("Sorted Arrays ");
     for(int i = 0; i<n; i++)
        printf(" %d ",arr[i]);
-    
+
     return 0;
 }
-
 
 // Enter number of elements :6
 // Enter 6 elements :
@@ -337,3 +335,78 @@ int main(){
 // 23
 // 57
 // Sorted Arrays  4  7  12  14  23  57
+
+// // Qucik Sort
+#include <stdio.h>
+
+void printArray(int *a, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+    printf("\n");
+}
+
+int partion(int a[], int low, int high)
+{
+    int pivot = a[low];
+    int i = low + 1;
+    int j = high;
+    int temp;
+
+    do
+    {
+        while (a[i] <= pivot)
+        {
+            i++;
+        }
+
+        while (a[j] > pivot)
+        {
+            j--;
+        }
+
+        if (i < j)
+        {
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+
+    } while (i < j);
+    
+    // Swap A[low] and a[j]
+    temp = a[low];
+    a[low] = a[j];
+    a[j] = temp;
+    return j;
+}
+
+void quicksort(int a[], int low, int high)
+{
+    int pi;// Index of pivot after partition
+    if (low < high)
+    {
+        pi = partion(a, low, high);
+        quicksort(a, low, pi - 1); // sort left subarray 
+        quicksort(a, pi + 1, high); // sort right subarray
+    }
+}
+
+int main()
+{
+    int a[] = {9, 4, 4, 8, 7, 5, 6};
+    int n = 7;
+    printf("Normal Array:-");
+    printArray(a, n);
+    quicksort(a, 0, n - 1);
+    printf("Sorted Array:-");
+    printArray(a, n);
+
+    return 0;
+}
+
+// Output
+// Normal Array:- 9  4  4  8  7  5  6 
+// Sorted Array:- 4  4  5  6  7  8  9 
