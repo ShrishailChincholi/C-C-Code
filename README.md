@@ -86,4 +86,31 @@ This repository contains all my learning and practice from **Day 1 to Day 7**, w
 
 ---
 
+# 📘 Data Structures & Algorithms (DSA) Practice
+
+
+## 🧠 Topics Covered
+
+### 🔗 Linked List
+- Insert (at beginning, end, and position)
+- Deletion (by value / position)
+- Search
+- Display elements
+- Count number of nodes
+
+### 🔀 Sorting Algorithms
+- Merge Sort
+- Quick Sort
+
+---
+
+## 🗂️ Program List
+
+| Category | Programs |
+|--------|----------|
+| Linked List | Insert, Delete, Search, Display, Count |
+| Sorting | Merge Sort, Quick Sort |
+
+---
+
 
