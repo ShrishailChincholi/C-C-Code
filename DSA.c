@@ -1,4 +1,5 @@
 // Write C Program Linked List - display and count
+
 #include <stdio.h>
 #include <stdlib.h>
 // Define a structure for a node in the linked list
@@ -7,7 +8,9 @@ struct Node
     int data;
     struct Node *next;
 };
+
 // Function to display the nodes in the linked list
+
 void displayNodes(struct Node *head)
 {
     printf("Linked List nodes: ");
@@ -18,6 +21,7 @@ void displayNodes(struct Node *head)
     }
     printf("\n");
 }
+
 // Function to count the number of nodes in the linked list
 int countNodes(struct Node *head)
 {
@@ -29,6 +33,7 @@ int countNodes(struct Node *head)
     }
     return count;
 }
+
 int main()
 {
     // Initialize an empty linked list
