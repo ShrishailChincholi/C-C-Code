@@ -44,3 +44,25 @@ void enqueue(struct CircularQueue* queue, int value) {
  
     printf("%d enqueued into the circular queue.\n", value); 
 } 
+
+// Function to dequeue (delete) an element from the circular queue 
+void dequeue(struct CircularQueue* queue) { 
+    if (isEmpty(queue)) { 
+        printf("Circular queue underflow. Cannot dequeue from an empty queue.\n"); 
+        return; 
+    } 
+ 
+    struct Node* temp = queue->front; 
+ 
+    if (queue->front == queue->rear) { 
+        // Only one element in the queue 
+        queue->front = NULL; 
+        queue->rear = NULL; 
+    } else { 
+        queue->front = queue->front->next; 
+        queue->rear->next = queue->front; // Make it circular 
+    } 
+ 
+    free(temp); 
+    printf("Element dequeued from the circular queue.\n"); 
+}
