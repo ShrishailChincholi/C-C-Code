@@ -66,3 +66,19 @@ void dequeue(struct CircularQueue* queue) {
     free(temp); 
     printf("Element dequeued from the circular queue.\n"); 
 }
+
+// Function to display the elements in the circular queue 
+void display(struct CircularQueue* queue) { 
+    if (isEmpty(queue)) { 
+        printf("Circular queue is empty.\n"); 
+        return; 
+    } 
+ 
+    struct Node* current = queue->front; 
+    printf("Circular Queue elements: "); 
+    do { 
+        printf("%d ", current->data); 
+        current = current->next; 
+    } while (current != queue->front); 
+    printf("\n"); 
+} 
