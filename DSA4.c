@@ -33,3 +33,22 @@ struct Node* insert(struct Node* root, int data) {
  
     return root; 
 }
+
+// Function for inorder traversal of the binary search tree 
+void inorderTraversal(struct Node* root) { 
+    if (root != NULL) { 
+        inorderTraversal(root->left); 
+        printf("%d ", root->data); 
+        inorderTraversal(root->right); 
+    } 
+} 
+
+// Function for preorder traversal of the binary search tree 
+void preorderTraversal(struct Node* root) { 
+    if (root != NULL) { 
+        printf("%d ", root->data); 
+        preorderTraversal(root->left); 
+        preorderTraversal(root->right); 
+    } 
+} 
+ 
