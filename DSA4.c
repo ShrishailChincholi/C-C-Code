@@ -1,4 +1,4 @@
-// Binary search tree and perform inorder,preorder and postorder traversals. 
+// Binary seaDrch tree and perform inorder,preorder and postorder traversals. 
 
 #include <stdio.h> 
 #include <stdlib.h> 
@@ -18,3 +18,18 @@ struct Node* createNode(int data) {
     newNode->right = NULL; 
     return newNode; 
 } 
+
+// Function to insert a new node into the binary search tree 
+struct Node* insert(struct Node* root, int data) { 
+    if (root == NULL) { 
+        return createNode(data); 
+    } 
+ 
+    if (data < root->data) { 
+        root->left = insert(root->left, data); 
+    } else if (data > root->data) { 
+        root->right = insert(root->right, data); 
+    } 
+ 
+    return root; 
+}
