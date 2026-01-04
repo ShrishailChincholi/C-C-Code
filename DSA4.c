@@ -60,4 +60,61 @@ void postorderTraversal(struct Node* root) {
         printf("%d ", root->data); 
     } 
 } 
+// Function to display the menu 
+void displayMenu() { 
+    printf("\nMenu:\n"); 
+    printf("1. Insert a node\n"); 
+    printf("2. Inorder Traversal\n"); 
+    printf("3. Preorder Traversal\n"); 
+    printf("4. Postorder Traversal\n"); 
+    printf("5. Exit\n"); 
+} 
+ 
+int main() { 
+    struct Node* root = NULL; // Initialize an empty binary search tree 
+ 
+    int choice, data; 
+ 
+    do { 
+        displayMenu(); 
+        printf("Enter your choice: "); 
+        scanf("%d", &choice); 
+ 
+        switch (choice) { 
+            case 1: 
+                printf("Enter the data for the new node: "); 
+                scanf("%d", &data); 
+                root = insert(root, data); 
+                break; 
+            case 2: 
+                printf("Inorder Traversal: "); 
+                inorderTraversal(root); 
+                printf("\n"); 
+                break; 
+            case 3: 
+                printf("Preorder Traversal: "); 
+                preorderTraversal(root); 
+                printf("\n"); 
+                break; 
+            case 4: 
+                printf("Postorder Traversal: "); 
+                postorderTraversal(root); 
+                printf("\n"); 
+                break; 
+            case 5: 
+                printf("Exiting the program.\n"); 
+                break; 
+            default: 
+                printf("Invalid choice. Please try again.\n"); 
+                continue; 
+        } 
+ 
+    } while (choice != 5); 
+ 
+    // Free the memory allocated for the tree nodes before exiting 
+    // This step is typically done in a real-world application 
+    return 0; 
+} 
+
+
  
