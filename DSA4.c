@@ -52,3 +52,12 @@ void preorderTraversal(struct Node* root) {
     } 
 } 
  
+// Function for postorder traversal of the binary search tree 
+void postorderTraversal(struct Node* root) { 
+    if (root != NULL) { 
+        postorderTraversal(root->left); 
+        postorderTraversal(root->right); 
+        printf("%d ", root->data); 
+    } 
+} 
+ 
