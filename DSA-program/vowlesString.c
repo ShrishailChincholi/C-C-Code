@@ -1,3 +1,4 @@
+// Program to count vowels in string
 #include<stdio.h>
 int main(){
     char str[] = "hello iam shree";

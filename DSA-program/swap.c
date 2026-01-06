@@ -1,3 +1,4 @@
+// C program for swapping two numbers using pointers,
 #include <stdio.h>
 
 void swap(int *a, int *b)
