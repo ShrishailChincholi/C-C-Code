@@ -114,3 +114,33 @@ void deleteKey(struct HashTable *ht, char *key)
 
     printf("Key '%s' not found in the hash table.\n", key);
 }
+// Function to display the hash table 
+void displayHashTable(struct HashTable* ht) { 
+    printf("Hash Table:\n"); 
+    for (int i = 0; i < SIZE; i++) { 
+        printf("%d: ", i); 
+        struct Node* current = ht->table[i]; 
+        while (current != NULL) { 
+            printf("(%s, %d) ", current->key, current->value); 
+            current = current->next; 
+        } 
+        printf("\n"); 
+    } 
+} 
+ 
+int main() { 
+    struct HashTable ht; 
+    initializeHashTable(&ht); 
+ 
+    int choice, value; 
+    char key[50]; 
+ 
+    do { 
+        printf("\nMenu:\n"); 
+        printf("1. Insert\n"); 
+        printf("2. Search\n"); 
+        printf("3. Delete\n"); 
+        printf("4. Display Hash Table\n"); 
+        printf("5. Exit\n"); 
+        printf("Enter your choice: "); 
+        scanf("%d", &choice);
