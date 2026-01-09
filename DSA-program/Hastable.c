@@ -114,33 +114,164 @@ void deleteKey(struct HashTable *ht, char *key)
 
     printf("Key '%s' not found in the hash table.\n", key);
 }
-// Function to display the hash table 
-void displayHashTable(struct HashTable* ht) { 
-    printf("Hash Table:\n"); 
-    for (int i = 0; i < SIZE; i++) { 
-        printf("%d: ", i); 
-        struct Node* current = ht->table[i]; 
-        while (current != NULL) { 
-            printf("(%s, %d) ", current->key, current->value); 
-            current = current->next; 
-        } 
-        printf("\n"); 
-    } 
-} 
- 
-int main() { 
-    struct HashTable ht; 
-    initializeHashTable(&ht); 
- 
-    int choice, value; 
-    char key[50]; 
- 
-    do { 
-        printf("\nMenu:\n"); 
-        printf("1. Insert\n"); 
-        printf("2. Search\n"); 
-        printf("3. Delete\n"); 
-        printf("4. Display Hash Table\n"); 
-        printf("5. Exit\n"); 
-        printf("Enter your choice: "); 
+// Function to display the hash table
+void displayHashTable(struct HashTable *ht)
+{
+    printf("Hash Table:\n");
+    for (int i = 0; i < SIZE; i++)
+    {
+        printf("%d: ", i);
+        struct Node *current = ht->table[i];
+        while (current != NULL)
+        {
+            printf("(%s, %d) ", current->key, current->value);
+            current = current->next;
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    struct HashTable ht;
+    initializeHashTable(&ht);
+
+    int choice, value;
+    char key[50];
+
+    do
+    {
+        printf("\nMenu:\n");
+        printf("1. Insert\n");
+        printf("2. Search\n");
+        printf("3. Delete\n");
+        printf("4. Display Hash Table\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
         scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            printf("Enter the key: ");
+            scanf("%s", key);
+            printf("Enter the value: ");
+            scanf("%d", &value);
+            insert(&ht, key, value);
+            break;
+        case 2:
+            printf("Enter the key to search: ");
+            scanf("%s", key);
+            value = search(&ht, key);
+            if (value != -1)
+            {
+                printf("Value for key '%s': %d\n", key, value);
+            }
+            else
+            {
+                printf("Key '%s' not found in the hash table.\n", key);
+            }
+            break;
+        case 3:
+            printf("Enter the key to delete: ");
+            scanf("%s", key);
+            deleteKey(&ht, key);
+            break;
+        case 4:
+            displayHashTable(&ht);
+            break;
+        case 5:
+            printf("Exiting the program.\n");
+            break;
+        default:
+            printf("Invalid choice. Please try again.\n");
+            continue;
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
+// Output
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 1
+// Enter the key: apple
+// Enter the value: 10
+// Key 'apple' with value 10 inserted into the hash table.
+
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 1
+// Enter the key: banana
+// Enter the value: 20
+// Key 'banana' with value 20 inserted into the hash table.
+
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 1
+// Enter the key: mango
+// Enter the value: 30
+// Key 'mango' with value 30 inserted into the hash table.
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 4
+
+
+// Hash Table:
+// 0:
+// 1:
+// 2:
+// 3:
+// 4: (banana, 20)
+// 5: (apple, 10)
+// 6:
+// 7:
+// 8: (mango, 30)
+// 9:
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 2
+// Enter the key to search: apple
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 3
+// Enter the key to delete: banana
+
+// Menu:
+// 1. Insert
+// 2. Search
+// 3. Delete
+// 4. Display Hash Table
+// 5. Exit
+// Enter your choice: 5
+// Exiting the program.
