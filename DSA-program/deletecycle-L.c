@@ -19,3 +19,17 @@ int detectCycle(struct Node* head) {
     return 0;
 }
 
+
+int main() {
+    struct Node* head = malloc(sizeof(struct Node));
+    head->data = 1;
+    head->next = malloc(sizeof(struct Node));
+    head->next->data = 2;
+    head->next->next = head; // cycle
+
+    printf("%d", detectCycle(head));
+    return 0;
+}
+
+// Output 
+// 1
