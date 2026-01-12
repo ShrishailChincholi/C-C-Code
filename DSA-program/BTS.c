@@ -56,3 +56,7 @@ int main() {
     printf("\nSearch 30: %s", search(root, 30) ? "Found" : "Not Found");
     return 0;
 }
+
+// Output
+// 20 30 50 70 
+// Search 30: Found
