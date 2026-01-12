@@ -12,3 +12,26 @@ struct Node* createNode(int value) {
     newNode->left = newNode->right = NULL;
     return newNode;
 }
+
+struct Node* insert(struct Node* root, int value) {
+    if (root == NULL)
+        return createNode(value);
+
+    if (value < root->data)
+        root->left = insert(root->left, value);
+    else
+        root->right = insert(root->right, value);
+
+    return root;
+}
+
+int search(struct Node* root, int key) {
+    if (root == NULL)
+        return 0;
+    if (root->data == key)
+        return 1;
+    else if (key < root->data)
+        return search(root->left, key);
+    else
+        return search(root->right, key);
+}
