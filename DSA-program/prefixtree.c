@@ -40,3 +40,20 @@ int search(struct TrieNode* root, char* key) {
     }
     return temp->isEndOfWord;
 }
+
+int main() {
+    struct TrieNode* root = createNode();
+
+    insert(root, "hello");
+    insert(root, "hi");
+    insert(root, "help");
+
+    printf("Search hello: %d\n", search(root, "hello"));
+    printf("Search hey: %d\n", search(root, "hey"));
+
+    return 0;
+}
+
+// OUTPUT
+// Search hello: 1
+// Search hey: 0
