@@ -29,3 +29,57 @@ void heapify(int arr[], int n, int i) {
         heapify(arr, n, largest);
     }
 }
+
+/* Main Heap Sort function */
+void heapSort(int arr[], int n) {
+    // Build max heap
+    for (int i = n/2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    // Extract elements from heap
+    for (int i = n - 1; i > 0; i--) {
+        swap(&arr[0], &arr[i]);  // Move current root to end
+        heapify(arr, i, 0);      // Heapify reduced heap
+    }
+}
+
+/* Function to print array */
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+/* Main function */
+int main() {
+    int n;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("\nOriginal Array:\n");
+    printArray(arr, n);
+
+    heapSort(arr, n);
+
+    printf("\nSorted Array (Heap Sort):\n");
+    printArray(arr, n);
+
+    return 0;
+}
+
+// Output
+// Enter number of elements: 6
+// Enter 6 elements:
+// 12 4 7 3 9 1
+// Original Array:
+// 12 4 7 3 9 1
+
+// Sorted Array (Heap Sort):
+// 1 3 4 7 9 12
