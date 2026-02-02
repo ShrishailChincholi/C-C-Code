@@ -1,30 +1,26 @@
 #include <stdio.h>
 
-void display(int a[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        printf(" %d ", a[i]);
+void display(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
     }
     printf("\n");
 }
 
-int partitiom(int a[], int low, int high)
-{
+int partition(int a[], int low, int high) {
     int pivot = a[low];
     int i = low + 1;
     int j = high;
     int temp;
-    while (i < j)
-    {
+
+    while (i < j) {
         while (i <= high && a[i] <= pivot)
             i++;
 
         while (a[j] > pivot)
             j--;
 
-        if (i < j)
-        {
+        if (i < j) {
             temp = a[i];
             a[i] = a[j];
             a[j] = temp;
@@ -38,25 +34,25 @@ int partitiom(int a[], int low, int high)
     return j;
 }
 
-void qicksort(int a[], int low, int high)
-{
+void quicksort(int a[], int low, int high) {
     int pi;
-    if (low < high)
-    {
-        pi = partitiom(a, low, high);
-        qicksort(a, low, pi - 1);
-        qicksort(a, pi + 1, high);
+    if (low < high) {
+        pi = partition(a, low, high);
+        quicksort(a, low, pi - 1);
+        quicksort(a, pi + 1, high);
     }
 }
 
-int main()
-{
+int main() {
     int a[] = {4, 6, 2, 8, 3};
     int n = 5;
-    printf("Before sorting ;--\n");
+
+    printf("Before sorting:\n");
     display(a, n);
-    qicksort(a, 0, n - 1);
-    printf("After sorting ;--\n");
+
+    quicksort(a, 0, n - 1);
+
+    printf("After sorting:\n");
     display(a, n);
 
     return 0;
@@ -67,4 +63,4 @@ int main()
 // Before sorting ;--
 //  4  6  2  8  3 
 // After sorting ;--
-//  3  2  4  6  8 
+//  2  3  4  6  8 
