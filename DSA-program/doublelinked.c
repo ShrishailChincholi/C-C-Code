@@ -32,3 +32,32 @@ struct Node* insertAtEnd(struct Node* head, int value) {
 
     return head;
 }
+
+/* Display list forward */
+void displayForward(struct Node* head) {
+    struct Node* temp = head;
+    printf("Forward: ");
+    while (temp != NULL) {
+        printf("%d <-> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+/* Display list backward */
+void displayBackward(struct Node* head) {
+    struct Node* temp = head;
+
+    if (temp == NULL)
+        return;
+
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    printf("Backward: ");
+    while (temp != NULL) {
+        printf("%d <-> ", temp->data);
+        temp = temp->prev;
+    }
+    printf("NULL\n");
+}
