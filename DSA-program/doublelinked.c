@@ -61,3 +61,23 @@ void displayBackward(struct Node* head) {
     }
     printf("NULL\n");
 }
+
+
+int main() {
+    struct Node* head = NULL;
+
+    head = insertAtEnd(head, 10);
+    head = insertAtEnd(head, 20);
+    head = insertAtEnd(head, 30);
+    head = insertAtEnd(head, 40);
+
+    displayForward(head);
+    displayBackward(head);
+
+    return 0;
+}
+
+// Output
+// Forward: 10 <-> 20 <-> 30 <-> 40 <-> NULL
+// Backward: 40 <-> 30 <-> 20 <-> 10 <-> NULL
+
