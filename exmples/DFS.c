@@ -28,3 +28,26 @@ void addEdge(int src, int dest) {
     newNode->next = adj[src];
     adj[src] = newNode;
 }
+
+int main() {
+    int edges, i, u, v, start;
+
+    printf("Enter number of edges: ");
+    scanf("%d", &edges);
+
+    for (i = 0; i < 10; i++)
+        adj[i] = NULL;
+
+    for (i = 0; i < edges; i++) {
+        scanf("%d %d", &u, &v);
+        addEdge(u, v);
+    }
+
+    printf("Enter start vertex: ");
+    scanf("%d", &start);
+
+    printf("DFS Traversal: ");
+    dfs(start);
+
+    return 0;
+}
