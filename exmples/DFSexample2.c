@@ -21,3 +21,16 @@ void dfs(struct Node* root) {
     dfs(root->left);
     dfs(root->right);
 }
+
+int main() {
+    struct Node* root = newNode(1);
+    root->left = newNode(2);
+    root->right = newNode(3);
+    root->left->left = newNode(4);
+    root->left->right = newNode(5);
+
+    printf("DFS Traversal: ");
+    dfs(root);
+
+    return 0;
+}
