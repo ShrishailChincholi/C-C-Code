@@ -68,3 +68,129 @@ void menu(){
     printf("preorder \n");
     printf("postorder \n");
 }
+
+
+int main(){
+    struct Node* root = NULL;
+    int data,choice;
+    do
+    {
+        menu();
+        printf("Enter u r choice\n");
+        scanf("%d",&choice);
+        switch (choice)
+        {
+        case 1:
+            /* code */
+            printf("Enter a value to be insert \n");
+            scanf("%d",&data);
+            root = insert(root,data);
+            break;
+        case 2:
+            printf("Inorder------- \n");
+            inorder(root);
+            printf("\n");
+            break;
+        case 3:
+            printf("preorder-------");
+            preorder(root);
+            printf("\n");
+            break;
+        case 4:
+            printf("postorder-------");
+            postorder(root);
+            printf("\n");
+            break;
+        case 5:
+            printf("Exiting program ");
+            break;
+        
+        default:
+           printf("wrong choice");
+            break;
+        }
+
+    } while (choice != 5);
+    
+    return 0;
+}
+
+// Output
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+1
+Enter a value to be insert 
+1
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+1
+Enter a value to be insert 
+2
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+1
+Enter a value to be insert 
+3
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+1
+Enter a value to be insert 
+4
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+2
+Inorder-------
+1 2 3 4
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+3
+preorder-------
+1 2 3 4
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+4
+postorder-------
+4 3 2 1
+
+--menu---
+insert 
+inorder  
+preorder 
+postorder 
+Enter u r choice
+5
+Exiting program
