@@ -51,3 +51,33 @@ void push(int value) {
         printf("%d pushed into stack\n", value);
     }
 }
+
+void pop() {
+    if (isEmpty()) {
+        printf("Stack Underflow! Nothing to pop\n");
+    } else {
+        printf("%d popped from stack\n", stack[top]);
+        top--;
+    }
+}
+
+
+void peek() {
+    if (isEmpty()) {
+        printf("Stack is empty. No top element\n");
+    } else {
+        printf("Top element is: %d\n", stack[top]);
+    }
+}
+
+
+void display() {
+    if (isEmpty()) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Stack elements are:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
