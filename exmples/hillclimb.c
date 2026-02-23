@@ -32,3 +32,17 @@ void hill_climb(double *best_x, double *best_val) {
     *best_val = f(x);
 }
 
+int main() {
+    double x, val;
+
+    hill_climb(&x, &val);
+
+    printf("Best Solution (x): %.4lf\n", x);
+    printf("Maximum Value f(x): %.4lf\n", val);
+
+    return 0;
+}
+
+// output
+// Best Solution (x): 2.0000
+// Maximum Value f(x): 4.0000
