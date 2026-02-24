@@ -26,3 +26,20 @@ void push(char name, int f) {
     pq[pqSize].f = f;
     pqSize++;
 }
+
+char pop() {
+    int minIndex = 0;
+    for (int i = 1; i < pqSize; i++) {
+        if (pq[i].f < pq[minIndex].f)
+            minIndex = i;
+    }
+    char node = pq[minIndex].name;
+    pq[minIndex] = pq[pqSize - 1];
+    pqSize--;
+    return node;
+}
+
+
+int idx(char c) {
+    return c - 'A';
+}
