@@ -61,3 +61,31 @@ int main()
 // Amount Withdrawn: 3000
 // Account No: 1001
 // Balance   : 4000
+
+
+#include <iostream>
+using namespace std;
+
+class Area {
+public:
+    float r, l, b;
+
+    void circle() {
+        cout << "Enter radius: ";
+        cin >> r;
+        cout << "Area of Circle: " << 3.14 * r * r << endl;
+    }
+
+    void rectangle() {
+        cout << "Enter length and breadth: ";
+        cin >> l >> b;
+        cout << "Area of Rectangle: " << l * b << endl;
+    }
+};
+
+int main() {
+    Area a;
+    a.circle();
+    a.rectangle();
+    return 0;
+}
