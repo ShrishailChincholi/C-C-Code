@@ -68,3 +68,23 @@ void display() {
     }
     printf("NULL\n");
 }
+
+int main() {
+    insertBegin(10);
+    insertBegin(20);
+    insertEnd(30);
+    insertEnd(40);
+
+    printf("Linked List: ");
+    display();
+
+    deleteNode(20);
+    printf("After deleting 20: ");
+    display();
+
+    return 0;
+}
+
+// Output
+// Linked List: 20 -> 10 -> 30 -> 40 -> NULL
+// After deleting 20: 10 -> 30 -> 40 -> NULL
