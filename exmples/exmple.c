@@ -383,3 +383,31 @@ void display(struct Student s[], int n) {
     }
 }
 
+void findTopper(struct Student s[], int n) {
+    int max = s[0].marks;
+    int index = 0;
+
+    for(int i = 1; i < n; i++) {
+        if(s[i].marks > max) {
+            max = s[i].marks;
+            index = i;
+        }
+    }
+
+    printf("\nTopper: %s with %d marks\n", s[index].name, max);
+}
+
+int main() {
+    int n;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    struct Student s[n];
+
+    input(s, n);
+    display(s, n);
+    findTopper(s, n);
+
+    return 0;
+}
