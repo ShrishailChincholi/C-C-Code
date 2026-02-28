@@ -349,3 +349,37 @@ int main() {
 
 // Enter your choice: 2
 // 20 popped from stack
+
+
+#include <stdio.h>
+
+struct Student {
+    int id;
+    char name[50];
+    int marks;
+};
+
+void input(struct Student s[], int n) {
+    for(int i = 0; i < n; i++) {
+        printf("\nEnter details of Student %d\n", i + 1);
+
+        printf("Enter ID: ");
+        scanf("%d", &s[i].id);
+
+        printf("Enter Name: ");
+        scanf(" %[^\n]", s[i].name);
+
+        printf("Enter Marks: ");
+        scanf("%d", &s[i].marks);
+    }
+}
+
+void display(struct Student s[], int n) {
+    printf("\nID\tName\tMarks\n");
+    printf("--------------------------\n");
+
+    for(int i = 0; i < n; i++) {
+        printf("%d\t%s\t%d\n", s[i].id, s[i].name, s[i].marks);
+    }
+}
+
