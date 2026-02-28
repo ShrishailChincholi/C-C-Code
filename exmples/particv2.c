@@ -37,6 +37,14 @@ struct Node *Pop(struct Node *top)
     return top;
 }
 
+
+
+
+
+
+
+
+
 struct Node *Display(struct Node *top)
 {
     if (top == NULL)
