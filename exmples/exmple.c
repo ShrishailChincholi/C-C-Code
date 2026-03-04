@@ -467,3 +467,61 @@ int main() {
 //  .  .  .  .  .  Q  .  .
 //  .  .  .  Q  .  .  .  .
 //  .  .  .  .  .  .  .  Q
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 4
+
+int board[N];
+
+// Check if queen can be placed safely
+int isSafe(int row, int col) {
+    for (int i = 0; i < row; i++) {
+        if (board[i] == col || abs(board[i] - col) == row - i)
+            return 0;
+    }
+    return 1;
+}
+
+// Solve using backtracking
+void solve(int row) {
+    if (row == N) {
+       
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (board[i] == j)
+                    printf(" Q ");
+                else
+                    printf(" . ");
+            }
+            printf("\n");
+        }
+        printf("\n");
+        return;
+    }
+
+    for (int col = 0; col < N; col++) {
+        if (isSafe(row, col)) {
+            board[row] = col;
+            solve(row + 1);
+        }
+    }
+}
+
+int main() {
+    solve(0);
+    return 0;
+}
+
+
+// Output
+//  .  Q  .  .
+//  .  .  .  Q
+//  Q  .  .  .
+//  .  .  Q  .
+
