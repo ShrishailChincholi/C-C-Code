@@ -49,3 +49,48 @@ void delete()
 
     size--;
 }
+
+// Display queue
+void display()
+{
+    if (size == -1)
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Value\tPriority\n");
+
+    for (int i = 0; i <= size; i++)
+    {
+        printf("%d\t%d\n", value[i], priority[i]);
+    }
+}
+
+int main()
+{
+    insert(10, 2);
+    insert(20, 5);
+    insert(30, 1);
+
+    display();
+
+    delete();
+
+    display();
+
+    return 0;
+}
+
+
+// Output
+// Value   Priority
+// 10      2
+// 20      5
+// 30      1
+
+// Deleted element: 20
+
+// Value   Priority
+// 10      2
+// 30      1
