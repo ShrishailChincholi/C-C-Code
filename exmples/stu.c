@@ -39,3 +39,25 @@ int main()
 
     return 0;
 }
+
+// Output
+// Enter details of student 1
+// Enter Roll Number: 101
+// Enter Name: Rahul
+// Enter Marks: 85
+
+// Enter details of student 2
+// Enter Roll Number: 102
+// Enter Name: Ankit
+// Enter Marks: 90
+
+// Enter details of student 3
+// Enter Roll Number: 103
+// Enter Name: Neha
+// Enter Marks: 88
+
+// Student Records:
+
+// Roll Number: 101
+// Name: Rahul
+// Marks: 85.00
