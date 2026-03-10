@@ -17,6 +17,30 @@ void display(struct patient p)
     printf("Disease: %s\n", p.disease);
 }
 
+
+void searchPatient()
+{
+    int id,i,found=0;
+
+    printf("Enter Patient ID to search: ");
+    scanf("%d",&id);
+
+    for(i=0;i<n;i++)
+    {
+        if(p[i].id==id)
+        {
+            printf("\nPatient Found\n");
+            printf("Name: %s\n",p[i].name);
+            printf("Age: %d\n",p[i].age);
+            printf("Disease: %s\n",p[i].disease);
+            found=1;
+        }
+    }
+
+    if(found==0)
+    printf("Patient not found\n");
+}
+
 int main()
 {
     struct patient p;
