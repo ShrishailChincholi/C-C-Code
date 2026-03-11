@@ -18,6 +18,36 @@ void display(struct patient p)
 }
 
 
+void updatePatient()
+{
+    int id,i,found=0;
+
+    printf("Enter Patient ID to update: ");
+    scanf("%d",&id);
+
+    for(i=0;i<n;i++)
+    {
+        if(p[i].id==id)
+        {
+            printf("Enter new Name: ");
+            scanf("%s",p[i].name);
+
+            printf("Enter new Age: ");
+            scanf("%d",&p[i].age);
+
+            printf("Enter new Disease: ");
+            scanf("%s",p[i].disease);
+
+            printf("Record Updated\n");
+            found=1;
+        }
+    }
+
+    if(found==0)
+    printf("Patient not found\n");
+}
+
+
 void searchPatient()
 {
     int id,i,found=0;
