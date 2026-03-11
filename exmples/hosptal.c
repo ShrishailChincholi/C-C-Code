@@ -73,33 +73,55 @@ void searchPatient()
 
 int main()
 {
-    struct patient p;
+    int choice;
 
-    printf("Enter Patient ID: ");
-    scanf("%d", &p.id);
+    addPatients();
 
-    printf("Enter Name: ");
-    scanf("%s", p.name);
+    printf("\n1. Display Patients");
+    printf("\n2. Search Patient");
+    printf("\n3. Update Patient");
+    printf("\nEnter choice: ");
+    scanf("%d",&choice);
 
-    printf("Enter Age: ");
-    scanf("%d", &p.age);
-
-    printf("Enter Disease: ");
-    scanf("%s", p.disease);
-
-    display(p);
+    switch(choice)
+    {
+        case 1: displayPatients(); break;
+        case 2: searchPatient(); break;
+        case 3: updatePatient(); break;
+        default: printf("Invalid choice");
+    }
 
     return 0;
 }
 
 // Output
-// Enter Patient ID: 501
-// Enter Name: Ramesh
-// Enter Age: 45
-// Enter Disease: Fever
+// Enter number of patients: 2
 
-// Patient Details
-// Patient ID: 501
-// Name: Ramesh
-// Age: 45
+// Enter details of patient 1
+// Patient ID: 101
+// Name: Ravi
+// Age: 30
 // Disease: Fever
+
+// Enter details of patient 2
+// Patient ID: 102
+// Name: Sita
+// Age: 25
+// Disease: Cold
+
+// 1. Display Patients
+// 2. Search Patient
+// 3. Update Patient
+// Enter choice: 1
+
+// Patient Records
+
+// ID: 101
+// Name: Ravi
+// Age: 30
+// Disease: Fever
+
+// ID: 102
+// Name: Sita
+// Age: 25
+// Disease: Cold
