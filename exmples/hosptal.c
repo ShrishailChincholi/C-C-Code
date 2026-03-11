@@ -71,6 +71,33 @@ void searchPatient()
     printf("Patient not found\n");
 }
 
+void deletePatient()
+{
+    int id,i,j,found=0;
+
+    printf("Enter Patient ID to delete: ");
+    scanf("%d",&id);
+
+    for(i=0;i<n;i++)
+    {
+        if(p[i].id==id)
+        {
+            for(j=i;j<n-1;j++)
+            {
+                p[j]=p[j+1];   // shift records
+            }
+
+            n--; // reduce patient count
+            printf("Patient record deleted\n");
+            found=1;
+            break;
+        }
+    }
+
+    if(found==0)
+        printf("Patient not found\n");
+}
+
 int main()
 {
     int choice;
