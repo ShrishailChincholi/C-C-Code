@@ -146,3 +146,32 @@ int main() {
 
     return 0;
 }
+
+#include <stdio.h>
+
+int main() {
+    int choice;
+    float a, b, result;
+
+    do {
+        printf("\nCalculator Game\n");
+        printf("1. Addition\n");
+        printf("2. Subtraction\n");
+        printf("3. Multiplication\n");
+        printf("4. Division\n");
+        printf("5. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        if(choice >= 1 && choice <= 4) {
+            printf("Enter two numbers: ");
+            scanf("%f %f", &a, &b);
+        }
+
+       
+
+    } while(choice != 5);
+
+    return 0;
+}
