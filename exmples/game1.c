@@ -117,3 +117,32 @@ int main() {
 }
 
 
+#include <stdio.h>
+
+int main() {
+    char word[] = "code";
+    char guess;
+    int i, correct = 0;
+
+    printf("Guess the word (4 letters)\n");
+
+    for(i = 0; i < 4; i++) {
+        printf("Enter a letter: ");
+        scanf(" %c", &guess);
+
+        if(guess == word[i]) {
+            printf("Correct position\n");
+            correct++;
+        } else {
+            printf("Wrong letter or position\n");
+        }
+    }
+
+    if(correct == 4) {
+        printf("You guessed the word correctly\n");
+    } else {
+        printf("Better luck next time\n");
+    }
+
+    return 0;
+}
