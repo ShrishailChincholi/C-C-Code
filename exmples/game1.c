@@ -169,7 +169,36 @@ int main() {
             scanf("%f %f", &a, &b);
         }
 
-       
+        switch(choice) {
+            case 1:
+                result = a + b;
+                printf("Result = %.2f\n", result);
+                break;
+
+            case 2:
+                result = a - b;
+                printf("Result = %.2f\n", result);
+                break;
+
+            case 3:
+                result = a * b;
+                printf("Result = %.2f\n", result);
+                break;
+
+            case 4:
+                if(b != 0)
+                    printf("Result = %.2f\n", a / b);
+                else
+                    printf("Division by zero not allowed\n");
+                break;
+
+            case 5:
+                printf("Exiting program\n");
+                break;
+
+            default:
+                printf("Invalid choice\n");
+        }
 
     } while(choice != 5);
 
