@@ -57,3 +57,36 @@ int main(){
     
 
 }
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int dice, guess;
+
+    // Generate random number (1–6)
+    srand(time(0));
+    dice = rand() % 6 + 1;
+
+    printf("Dice Game\n");
+    printf("Guess the dice number (1 to 6): ");
+    scanf("%d", &guess);
+
+    printf("Dice rolled: %d\n", dice);
+
+    if(guess == dice) {
+        printf("Correct guess\n");
+    } else {
+        printf("Wrong guess\n");
+    }
+
+    return 0;
+}
+
+
+// Output
+// Dice Game
+// Guess the dice number (1 to 6): 4
+// Dice rolled: 2
+// Wrong guess
