@@ -485,3 +485,46 @@ int main() {
 // Guess the dice number (1 to 6): 4
 // Dice rolled: 2
 // Wrong guess
+
+
+
+// Word Count Mapping
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int n_of_line;
+    scanf("%d", &n_of_line);
+    getchar(); // consume newline
+
+    char line[1000];
+    char *word;
+
+    for (int i = 0; i < n_of_line; i++) {
+        fgets(line, sizeof(line), stdin);
+
+        int count = 0;
+        word = strtok(line, " \n");
+
+        if (word != NULL) {
+            char first[100];
+            strcpy(first, word);
+
+            while (word != NULL) {
+                count++;
+                word = strtok(NULL, " \n");
+            }
+
+            printf("%s:%d\n", first, count - 1);
+        }
+    }
+
+    return 0;
+}
+
+// Output
+// 2
+// apple is red
+// dog is animal
+// apple:2
+// dog:2
