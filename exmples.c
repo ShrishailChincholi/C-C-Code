@@ -578,3 +578,62 @@ int main() {
 // Output
 // this is a simple test
 // is a
+
+
+
+
+// Word Length Frequency Counter 
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[1000];
+    char *word;
+    int len, found;
+
+    int lengths[100], count[100];
+    int size = 0;
+
+    // Input sentence
+    fgets(str, sizeof(str), stdin);
+
+    // Split words
+    word = strtok(str, " \n");
+
+    while (word != NULL) {
+        len = strlen(word);
+        found = 0;
+
+        // Check if length already exists
+        for (int i = 0; i < size; i++) {
+            if (lengths[i] == len) {
+                count[i]++;
+                found = 1;
+                break;
+            }
+        }
+
+        // If new length
+        if (!found) {
+            lengths[size] = len;
+            count[size] = 1;
+            size++;
+        }
+
+        word = strtok(NULL, " \n");
+    }
+
+    // Print result like dictionary
+    printf("{");
+    for (int i = 0; i < size; i++) {
+        printf("%d:%d", lengths[i], count[i]);
+        if (i < size - 1)
+            printf(", ");
+    }
+    printf("}");
+
+    return 0;
+}
+
+// Output
+// {4:2, 2:1, 5:1}
