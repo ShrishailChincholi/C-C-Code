@@ -528,3 +528,53 @@ int main() {
 // dog is animal
 // apple:2
 // dog:2
+
+// Stop Words Removal Program
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char original[1000], stop[1000];
+    char *words[100], *stop_words[100];
+    int i = 0, j = 0, k, flag;
+
+    // Input original sentence
+    fgets(original, sizeof(original), stdin);
+
+    // Input stop words
+    fgets(stop, sizeof(stop), stdin);
+
+    // Split original words
+    words[i] = strtok(original, " \n");
+    while (words[i] != NULL) {
+        i++;
+        words[i] = strtok(NULL, " \n");
+    }
+
+    // Split stop words
+    stop_words[j] = strtok(stop, " \n");
+    while (stop_words[j] != NULL) {
+        j++;
+        stop_words[j] = strtok(NULL, " \n");
+    }
+
+    // Remove stop words and print result
+    for (k = 0; k < i; k++) {
+        flag = 0;
+        for (int m = 0; m < j; m++) {
+            if (strcmp(words[k], stop_words[m]) == 0) {
+                flag = 1;
+                break;
+            }
+        }
+        if (!flag) {
+            printf("%s ", words[k]);
+        }
+    }
+
+    return 0;
+}
+
+// Output
+// this is a simple test
+// is a
