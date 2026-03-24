@@ -642,3 +642,55 @@ int main() {
 
 // Output
 // {4:2, 2:1, 5:1}
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[1000];
+    char *word;
+    char letters[100];
+    int count[100];
+    int size = 0, found;
+
+    // Input sentence
+    fgets(str, sizeof(str), stdin);
+
+    // Split words
+    word = strtok(str, " \n");
+
+    while (word != NULL) {
+        char first = word[0];
+        found = 0;
+
+        // Check if letter already exists
+        for (int i = 0; i < size; i++) {
+            if (letters[i] == first) {
+                count[i]++;
+                found = 1;
+                break;
+            }
+        }
+
+        // If new letter
+        if (!found) {
+            letters[size] = first;
+            count[size] = 1;
+            size++;
+        }
+
+        word = strtok(NULL, " \n");
+    }
+
+    // Print result like dictionary
+    printf("{");
+    for (int i = 0; i < size; i++) {
+        printf("%c:%d", letters[i], count[i]);
+        if (i < size - 1)
+            printf(", ");
+    }
+    printf("}");
+
+    return 0;
+}
