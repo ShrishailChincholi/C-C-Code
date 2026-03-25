@@ -694,3 +694,54 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[1000];
+    char *word;
+    char words[100][50];
+    int count[100];
+    int size = 0, found;
+
+    // Input sentence
+    fgets(str, sizeof(str), stdin);
+
+    // Split words
+    word = strtok(str, " \n");
+
+    while (word != NULL) {
+        found = 0;
+
+        // Check if word already exists
+        for (int i = 0; i < size; i++) {
+            if (strcmp(words[i], word) == 0) {
+                count[i]++;
+                found = 1;
+                break;
+            }
+        }
+
+        // If new word
+        if (!found) {
+            strcpy(words[size], word);
+            count[size] = 1;
+            size++;
+        }
+
+        word = strtok(NULL, " \n");
+    }
+
+    // Print result like dictionary
+    printf("{");
+    for (int i = 0; i < size; i++) {
+        printf("%s:%d", words[i], count[i]);
+        if (i < size - 1)
+            printf(", ");
+    }
+    printf("}");
+
+    return 0;
+}
