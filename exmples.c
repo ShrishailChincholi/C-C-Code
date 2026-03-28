@@ -745,3 +745,36 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[1000];
+    char *word;
+    int small = 0, medium = 0, large = 0;
+
+    // Input sentence
+    fgets(str, sizeof(str), stdin);
+
+    // Split words
+    word = strtok(str, " \n");
+
+    while (word != NULL) {
+        int len = strlen(word);
+
+        if (len <= 3)
+            small++;
+        else if (len <= 6)
+            medium++;
+        else
+            large++;
+
+        word = strtok(NULL, " \n");
+    }
+
+    printf("{small:%d, medium:%d, large:%d}", small, medium, large);
+
+    return 0;
+}
