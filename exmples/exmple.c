@@ -592,3 +592,72 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    int roll;
+    char name[50];
+    float marks;
+};
+
+// Function to sort students by marks
+void sortStudents(struct Student s[], int n) {
+    struct Student temp;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (s[i].marks < s[j].marks) {
+                temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+}
+
+void searchStudent(struct Student s[], int n, int key) {
+    int found = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i].roll == key) {
+            printf("\nStudent Found:\n");
+            printf("Roll: %d\n", s[i].roll);
+            printf("Name: %s\n", s[i].name);
+            printf("Marks: %.2f\n", s[i].marks);
+            found = 1;
+            break;
+        }
+    }
+    if (!found)
+        printf("\nStudent not found\n");
+}
+
+int main() {
+    int n, key;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    struct Student s[n];
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter Roll, Name, Marks: ");
+        scanf("%d %s %f", &s[i].roll, s[i].name, &s[i].marks);
+    }
+
+    sortStudents(s, n);
+
+    printf("\nSorted Student Records (High to Low Marks):\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d %s %.2f\n", s[i].roll, s[i].name, s[i].marks);
+    }
+
+    printf("\nEnter roll number to search: ");
+    scanf("%d", &key);
+
+    searchStudent(s, n, key);
+
+    return 0;
+}
