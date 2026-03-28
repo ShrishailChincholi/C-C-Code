@@ -525,3 +525,70 @@ int main() {
 //  Q  .  .  .
 //  .  .  Q  .
 
+
+
+#include <stdio.h>
+#include <string.h>
+
+struct LengthFreq {
+    int length;
+    int count;
+};
+
+// Function to sort by length
+void sort(struct LengthFreq arr[], int size) {
+    struct LengthFreq temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (arr[i].length > arr[j].length) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    char str[1000];
+    char *word;
+    struct LengthFreq freq[100];
+    int size = 0, found;
+
+    fgets(str, sizeof(str), stdin);
+
+    word = strtok(str, " \n");
+
+    while (word != NULL) {
+        int len = strlen(word);
+        found = 0;
+
+        for (int i = 0; i < size; i++) {
+            if (freq[i].length == len) {
+                freq[i].count++;
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {
+            freq[size].length = len;
+            freq[size].count = 1;
+            size++;
+        }
+
+        word = strtok(NULL, " \n");
+    }
+
+    sort(freq, size);
+
+    printf("{");
+    for (int i = 0; i < size; i++) {
+        printf("%d:%d", freq[i].length, freq[i].count);
+        if (i < size - 1)
+            printf(", ");
+    }
+    printf("}");
+
+    return 0;
+}
