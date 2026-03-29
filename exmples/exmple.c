@@ -618,6 +618,8 @@ void sortStudents(struct Student s[], int n) {
     }
 }
 
+
+
 void searchStudent(struct Student s[], int n, int key) {
     int found = 0;
     for (int i = 0; i < n; i++) {
@@ -661,3 +663,63 @@ int main() {
 
     return 0;
 }
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+struct Employee {
+    int id;
+    char name[50];
+    float salary;
+};
+
+// Function to find highest salary
+void highestSalary(struct Employee e[], int n) {
+    int maxIndex = 0;
+
+    for (int i = 1; i < n; i++) {
+        if (e[i].salary > e[maxIndex].salary) {
+            maxIndex = i;
+        }
+    }
+
+    printf("\nHighest Salary Employee:\n");
+    printf("ID: %d\nName: %s\nSalary: %.2f\n",
+           e[maxIndex].id, e[maxIndex].name, e[maxIndex].salary);
+}
+
+// Function to increase salary by percentage
+void increaseSalary(struct Employee e[], int n, float percent) {
+    for (int i = 0; i < n; i++) {
+        e[i].salary += (e[i].salary * percent / 100);
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter number of employees: ");
+    scanf("%d", &n);
+
+    struct Employee e[n];
+
+    for (int i = 0; i < n; i++) {
+        printf("\nEnter ID, Name, Salary: ");
+        scanf("%d %s %f", &e[i].id, e[i].name, &e[i].salary);
+    }
+
+    increaseSalary(e, n, 10); // increase by 10%
+
+    printf("\nUpdated Employee Records:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d %s %.2f\n", e[i].id, e[i].name, e[i].salary);
+    }
+
+    highestSalary(e, n);
+
+    return 0;
+}
+
