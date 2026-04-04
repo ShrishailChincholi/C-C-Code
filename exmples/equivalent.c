@@ -113,3 +113,39 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s1[100], s2[100];
+    int i;
+
+    int freq1[26] = {0};
+    int freq2[26] = {0};
+
+    scanf("%s %s", s1, s2);
+
+
+    for (i = 0; s1[i] != '\0'; i++) {
+        freq1[s1[i] - 'a']++;
+    }
+
+
+    for (i = 0; s2[i] != '\0'; i++) {
+        freq2[s2[i] - 'a']++;
+    }
+
+ 
+    for (i = 0; i < 26; i++) {
+        if (freq1[i] != freq2[i]) {
+            printf("Not Anagram");
+            return 0;
+        }
+    }
+
+    printf("Anagram");
+
+    return 0;
+}
