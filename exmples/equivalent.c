@@ -149,3 +149,29 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <stdio.h>
+
+int main() {
+    int num, original, remainder;
+    int result = 0;
+
+    scanf("%d", &num);
+
+    original = num;
+
+    while (num != 0) {
+        remainder = num % 10;
+        result += remainder * remainder * remainder;
+        num /= 10;
+    }
+
+    if (result == original)
+        printf("Armstrong Number");
+    else
+        printf("Not Armstrong");
+
+    return 0;
+}
