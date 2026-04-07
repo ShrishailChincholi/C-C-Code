@@ -209,3 +209,32 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s1[100], s2[100];
+    int i, j, count = 0;
+
+    scanf("%s", s1);
+    scanf("%s", s2);
+
+    int len1 = strlen(s1);
+    int len2 = strlen(s2);
+
+    for (i = 0; i < len1; i++) {
+        for (j = 0; j < len2; j++) {
+            if (s1[i] == s2[j]) {
+                count++;
+                s2[j] = '*';  // mark used
+                break;
+            }
+        }
+    }
+
+    printf("%d", count);
+
+    return 0;
+}
