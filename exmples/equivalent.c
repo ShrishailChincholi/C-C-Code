@@ -238,3 +238,23 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <stdio.h>
+
+int main() {
+    int n, k;
+    int resultg = 0;
+
+    scanf("%d", &n);
+    scanf("%d", &k);
+
+    for (int i = 2; i <= n; i++) {
+        resultg = (resultg + k) % i;
+    }
+
+    printf("%d", resultg + 1);
+
+    return 0;
+}
