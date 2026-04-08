@@ -258,3 +258,22 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int n, step;
+    int pos = 0;
+
+    scanf("%d", &n);
+    scanf("%d", &step);
+
+    for (int i = 1; i <= n; i++) {
+        pos = (pos + step) % n;
+    }
+
+    printf("%d", pos);
+
+    return 0;
+}
