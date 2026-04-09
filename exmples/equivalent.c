@@ -347,3 +347,24 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int n, k;
+    scanf("%d %d", &n, &k);
+
+    int pos = 0;
+
+    for (int i = 1; i <= n; i++) {
+        pos = (pos + k) % n;
+    }
+
+    printf("Final Position: %d", pos + 1);
+
+    return 0;
+}
