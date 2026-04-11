@@ -368,3 +368,39 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int r, c, k;
+    scanf("%d %d", &r, &c);
+
+    int mat[50][50], res[50][50];
+
+    // Input matrix
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    scanf("%d", &k);
+
+    // Rotate each row
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            res[i][(j + k) % c] = mat[i][j];
+        }
+    }
+
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            printf("%d ", res[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
