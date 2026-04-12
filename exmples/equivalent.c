@@ -404,3 +404,36 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <stdio.h>
+
+int main() {
+    int r, c, steps;
+    scanf("%d %d", &r, &c);
+
+    int mat[50][50];
+
+  
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    scanf("%d", &steps);
+
+    int i = 0, j = 0; 
+
+    printf("%d ", mat[i][j]);
+
+   
+    for (int s = 0; s < steps; s++) {
+        i = (i + 1) % r;
+        j = (j + 1) % c;
+        printf("%d ", mat[i][j]);
+    }
+
+    return 0;
+}
