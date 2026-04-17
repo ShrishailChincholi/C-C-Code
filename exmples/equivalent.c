@@ -437,3 +437,35 @@ int main() {
 
     return 0;
 }
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}
+
+int main() {
+    char input[1000];
+    int arr[500], n = 0;
+
+    
+    fgets(input, sizeof(input), stdin);
+
+    
+    char *ptr = input;
+    while (*ptr) {
+        if ((*ptr >= '0' && *ptr <= '9') || *ptr == '-') {
+            arr[n++] = strtol(ptr, &ptr, 10);
+        } else {
+            ptr++;
+        }
+    }
+
+    if (n == 0) {
+        printf("0");
+        return 0;
+    }
+
+  
+}
