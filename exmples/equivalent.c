@@ -494,3 +494,41 @@ int main() {
     return 0;
   
 }
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}
+
+int main() {
+    int arr[] = {1, 2, 0, 1};  
+    int n = 4;
+
+    qsort(arr, n, sizeof(int), compare);
+
+    int longest = 1, current = 1;
+
+    for (int i = 1; i < n; i++) {
+        if (arr[i] == arr[i - 1]) {
+            continue; 
+        } 
+        else if (arr[i] == arr[i - 1] + 1) {
+            current++;
+        } 
+        else {
+            if (current > longest)
+                longest = current;
+            current = 1;
+        }
+    }
+
+    if (current > longest)
+        longest = current;
+
+    printf("%d\n", longest);
+
+    return 0;
+}
