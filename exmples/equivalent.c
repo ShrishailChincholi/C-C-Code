@@ -532,3 +532,52 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int arr[] = {3, 7, 2, 1, 9, 8};
+    int n = 6;
+
+    int max = arr[0], min = arr[0];
+
+  
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) max = arr[i];
+        if (arr[i] < min) min = arr[i];
+    }
+
+    int size = max - min + 1;
+    int present[size];
+
+    for (int i = 0; i < size; i++) {
+        present[i] = 0;
+    }
+
+
+    for (int i = 0; i < n; i++) {
+        present[arr[i] - min] = 1;
+    }
+
+    int longest = 0, current = 0;
+
+    
+    for (int i = 0; i < size; i++) {
+        if (present[i] == 1) {
+            current++;
+            if (current > longest)
+                longest = current;
+        } else {
+            current = 0;
+        }
+    }
+
+    printf("%d\n", longest);
+
+    return 0;
+}
