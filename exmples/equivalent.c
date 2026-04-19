@@ -581,3 +581,46 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);  
+    int count = 0;
+
+    for (int i = 0; i < n; i++) {
+        int size;
+        scanf("%d", &size); 
+
+        int arr[size];
+
+        for (int j = 0; j < size; j++) {
+            scanf("%d", &arr[j]);
+        }
+
+       
+        if (size <= 1) {
+            count++;
+            continue;
+        }
+
+        int diff = arr[1] - arr[0];
+        int valid = 1;
+
+        for (int j = 1; j < size; j++) {
+            if (arr[j] <= arr[j - 1] || (arr[j] - arr[j - 1]) != diff) {
+                valid = 0;
+                break;
+            }
+        }
+
+        if (valid) {
+            count++;
+        }
+    }
+
+    printf("%d\n", count);
+    return 0;
+}
