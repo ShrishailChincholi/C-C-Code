@@ -22,3 +22,42 @@ int main() {
     printf("Water trapped: %d\n", trap(h, n));
     return 0;
 }
+
+
+
+
+
+//   Next Greater Element using Stack
+
+#include <stdio.h>
+#define MAX 100
+
+int stack[MAX], top = -1;
+
+void push(int x) { stack[++top] = x; }
+int pop()        { return stack[top--]; }
+int isEmpty()    { return top == -1; }
+
+void nextGreater(int* arr, int n) {
+    int res[MAX];
+    for (int i = 0; i < n; i++) res[i] = -1;
+
+    for (int i = 0; i < n; i++) {
+        while (!isEmpty() && arr[stack[top]] < arr[i]) {
+            res[pop()] = arr[i];        
+        }
+        push(i);                      
+    }
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", res[i]);
+}
+
+int main() {
+    int arr[] = {4, 5, 2, 10, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    nextGreater(arr, n); 
+    return 0;
+}
+
+  // Output: 5 10 10 -1 -1
