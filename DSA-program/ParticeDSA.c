@@ -88,3 +88,22 @@ int hasCycle(struct Node* head) {
     }
     return 0;
 }
+
+
+
+// Two Sum using Hashing (Optimized)
+#include <stdio.h>
+
+void twoSum(int arr[], int n, int target) {
+    int hash[1000] = {0};
+
+    for (int i = 0; i < n; i++) {
+        int diff = target - arr[i];
+
+        if (hash[diff]) {
+            printf("Pair: %d %d", arr[i], diff);
+            return;
+        }
+        hash[arr[i]] = 1;
+    }
+}
