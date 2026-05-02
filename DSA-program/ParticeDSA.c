@@ -107,3 +107,18 @@ void twoSum(int arr[], int n, int target) {
         hash[arr[i]] = 1;
     }
 }
+
+
+
+//  Kadane’s Algorithm (Max Subarray)
+#include <stdio.h>
+
+int maxSubArray(int arr[], int n) {
+    int max = arr[0], curr = arr[0];
+
+    for (int i = 1; i < n; i++) {
+        curr = (curr + arr[i] > arr[i]) ? curr + arr[i] : arr[i];
+        max = (max > curr) ? max : curr;
+    }
+    return max;
+}
