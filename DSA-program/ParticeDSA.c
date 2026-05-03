@@ -122,3 +122,21 @@ int maxSubArray(int arr[], int n) {
     }
     return max;
 }
+
+
+
+// Fast Exponentiation (Binary Power)
+#include <stdio.h>
+
+long long power(long long a, int b) {
+    long long res = 1;
+
+    while (b > 0) {
+        if (b % 2)
+            res *= a;
+
+        a *= a;
+        b /= 2;
+    }
+    return res;
+}
