@@ -161,3 +161,23 @@ int missing(int arr[], int n) {
 
     return xor1 ^ xor2;
 }
+
+
+
+// Longest Substring Without Repeating
+#include <stdio.h>
+
+int longestUnique(char *s) {
+    int map[256] = {0}, left = 0, max = 0;
+
+    for (int right = 0; s[right]; right++) {
+        map[s[right]]++;
+
+        while (map[s[right]] > 1)
+            map[s[left++]]--;
+
+        int len = right - left + 1;
+        if (len > max) max = len;
+    }
+    return max;
+}
