@@ -181,3 +181,16 @@ int longestUnique(char *s) {
     }
     return max;
 }
+
+
+
+
+// Bit Manipulation – Find Single Number
+#include <stdio.h>
+
+int single(int arr[], int n) {
+    int res = 0;
+    for (int i = 0; i < n; i++)
+        res ^= arr[i];
+    return res;
+}
