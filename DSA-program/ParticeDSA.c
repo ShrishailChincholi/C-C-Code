@@ -230,3 +230,25 @@ int majority(int arr[], int n) {
     }
     return candidate;
 }
+
+
+
+// Trap Rain Water
+
+#include <stdio.h>
+
+int trap(int h[], int n) {
+    int l = 0, r = n - 1;
+    int leftMax = 0, rightMax = 0, water = 0;
+
+    while (l < r) {
+        if (h[l] < h[r]) {
+            leftMax = (h[l] > leftMax) ? h[l] : leftMax;
+            water += leftMax - h[l++];
+        } else {
+            rightMax = (h[r] > rightMax) ? h[r] : rightMax;
+            water += rightMax - h[r--];
+        }
+    }
+    return water;
+}
