@@ -212,3 +212,21 @@ long long power(long long a, int b) {
     }
     return res;
 }
+
+
+
+
+// Majority Element
+#include <stdio.h>
+
+int majority(int arr[], int n) {
+    int count = 0, candidate;
+
+    for (int i = 0; i < n; i++) {
+        if (count == 0)
+            candidate = arr[i];
+
+        count += (arr[i] == candidate) ? 1 : -1;
+    }
+    return candidate;
+}
