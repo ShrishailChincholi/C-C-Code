@@ -194,3 +194,21 @@ int single(int arr[], int n) {
         res ^= arr[i];
     return res;
 }
+
+
+
+
+
+// Fast Power (Binary Exponentiation)
+#include <stdio.h>
+
+long long power(long long a, int b) {
+    long long res = 1;
+
+    while (b) {
+        if (b & 1) res *= a;
+        a *= a;
+        b >>= 1;
+    }
+    return res;
+}
