@@ -281,3 +281,27 @@ int main() {
     char s[] = "ABC";
     permute(s, 0, 2);
 }
+
+
+
+// Subset Sum Problem
+
+#include <stdio.h>
+
+void subset(int arr[], int n, int i, int sum, int target) {
+    if (sum == target) {
+        printf("Found\n");
+        return;
+    }
+
+    if (i == n || sum > target)
+        return;
+
+    subset(arr, n, i + 1, sum + arr[i], target);
+    subset(arr, n, i + 1, sum, target);
+}
+
+int main() {
+    int arr[] = {2,4,6,8};
+    subset(arr, 4, 0, 0, 10);
+}
