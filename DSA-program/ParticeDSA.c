@@ -263,3 +263,21 @@ void swap(char *a, char *b) {
     *a = *b;
     *b = t;
 }
+
+void permute(char s[], int l, int r) {
+    if (l == r) {
+        printf("%s\n", s);
+        return;
+    }
+
+    for (int i = l; i <= r; i++) {
+        swap(&s[l], &s[i]);
+        permute(s, l + 1, r);
+        swap(&s[l], &s[i]);
+    }
+}
+
+int main() {
+    char s[] = "ABC";
+    permute(s, 0, 2);
+}
