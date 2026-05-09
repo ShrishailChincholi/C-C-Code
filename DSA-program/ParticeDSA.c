@@ -252,3 +252,14 @@ int trap(int h[], int n) {
     }
     return water;
 }
+
+
+
+// Generate All Permutations
+#include <stdio.h>
+
+void swap(char *a, char *b) {
+    char t = *a;
+    *a = *b;
+    *b = t;
+}
