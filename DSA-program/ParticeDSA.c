@@ -305,3 +305,15 @@ int main() {
     int arr[] = {2,4,6,8};
     subset(arr, 4, 0, 0, 10);
 }
+
+
+
+// Generate All Permutations
+#include <stdio.h>
+
+void swap(char *a, char *b) {
+    char t = *a;
+    *a = *b;
+    *b = t;
+}
+
