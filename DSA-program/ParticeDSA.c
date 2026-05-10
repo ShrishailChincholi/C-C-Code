@@ -334,3 +334,19 @@ int main() {
     char s[] = "ABC";
     permute(s, 0, 2);
 }
+
+
+
+// K-th Grammar Symbol
+#include <stdio.h>
+
+int kth(int n, int k) {
+    if (n == 1) return 0;
+
+    int mid = 1 << (n - 2);
+
+    if (k <= mid)
+        return kth(n - 1, k);
+
+    return !kth(n - 1, k - mid);
+}
