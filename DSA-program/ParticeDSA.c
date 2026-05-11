@@ -392,3 +392,24 @@ while (l < r) {
 
     s < target ? l++ : r--;
 }
+
+
+
+//  Tower of Hanoi
+
+#include <stdio.h>
+
+void hanoi(int n, char a, char b, char c) {
+    if (n == 0)
+        return;
+
+    hanoi(n - 1, a, c, b);
+
+    printf("%c -> %c\n", a, c);
+
+    hanoi(n - 1, b, a, c);
+}
+
+int main() {
+    hanoi(3, 'A', 'B', 'C');
+}
