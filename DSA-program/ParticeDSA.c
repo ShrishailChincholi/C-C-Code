@@ -350,3 +350,30 @@ int kth(int n, int k) {
 
     return !kth(n - 1, k - mid);
 }
+
+
+
+
+
+// Word Break Problem
+#include <stdio.h>
+#include <string.h>
+
+char *dict[] = {"i","like","sam","sung"};
+
+int check(char *s) {
+    if (!*s) return 1;
+
+    for (int i = 0; i < 4; i++) {
+        int len = strlen(dict[i]);
+
+        if (!strncmp(s, dict[i], len))
+            if (check(s + len))
+                return 1;
+    }
+    return 0;
+}
+
+int main() {
+    printf("%d", check("ilikesam"));
+}
