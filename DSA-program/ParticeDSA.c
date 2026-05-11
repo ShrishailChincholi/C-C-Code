@@ -377,3 +377,18 @@ int check(char *s) {
 int main() {
     printf("%d", check("ilikesam"));
 }
+
+
+
+//  Two Pointer Technique
+
+int l = 0, r = n - 1;
+
+while (l < r) {
+    int s = arr[l] + arr[r];
+
+    if (s == target)
+        break;
+
+    s < target ? l++ : r--;
+}
