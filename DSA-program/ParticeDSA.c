@@ -413,3 +413,24 @@ void hanoi(int n, char a, char b, char c) {
 int main() {
     hanoi(3, 'A', 'B', 'C');
 }
+
+
+
+// Recursive Gray Code Generator
+#include <stdio.h>
+
+void gray(int n) {
+    if (n == 0) {
+        printf("0 ");
+        return;
+    }
+
+    int size = 1 << n;
+
+    for (int i = 0; i < size; i++)
+        printf("%d ", i ^ (i >> 1));
+}
+
+int main() {
+    gray(3);
+}
