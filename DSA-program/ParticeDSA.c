@@ -471,3 +471,21 @@ int paths(int i, int j, int n, int m) {
 int main() {
     printf("%d", paths(0,0,3,3));
 }
+
+
+// K-th Symbol in Grammar
+#include <stdio.h>
+
+int kth(int n, int k) {
+    if (n == 1)
+        return 0;
+
+    if (k % 2 == 0)
+        return !kth(n - 1, k / 2);
+
+    return kth(n - 1, (k + 1) / 2);
+}
+
+int main() {
+    printf("%d", kth(4, 5));
+}
