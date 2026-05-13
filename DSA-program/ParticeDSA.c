@@ -452,3 +452,22 @@ int ack(int m, int n) {
 int main() {
     printf("%d", ack(2,2));
 }
+
+
+// Recursive Matrix Path Count
+#include <stdio.h>
+
+int paths(int i, int j, int n, int m) {
+    if (i == n - 1 && j == m - 1)
+        return 1;
+
+    if (i >= n || j >= m)
+        return 0;
+
+    return paths(i + 1, j, n, m)
+         + paths(i, j + 1, n, m);
+}
+
+int main() {
+    printf("%d", paths(0,0,3,3));
+}
