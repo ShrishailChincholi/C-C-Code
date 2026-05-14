@@ -510,3 +510,23 @@ int solve(int a, int b) {
 int main() {
     printf("%d", solve(4,7));
 }
+
+
+
+// Recursive Game Winner
+#include <stdio.h>
+
+int win(int n) {
+    if (n == 1)
+        return 0;
+
+    for (int i = 1; i < n; i++)
+        if (!win(n - i))
+            return 1;
+
+    return 0;
+}
+
+int main() {
+    printf(win(5) ? "Win" : "Lose");
+}
