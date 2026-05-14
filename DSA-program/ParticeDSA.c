@@ -489,3 +489,24 @@ int kth(int n, int k) {
 int main() {
     printf("%d", kth(4, 5));
 }
+
+
+
+
+// Minimum Operations to Make Equal
+
+#include <stdio.h>
+
+int solve(int a, int b) {
+    if (a >= b)
+        return a - b;
+
+    if (b % 2 == 0)
+        return 1 + solve(a, b / 2);
+
+    return 1 + solve(a, b + 1);
+}
+
+int main() {
+    printf("%d", solve(4,7));
+}
