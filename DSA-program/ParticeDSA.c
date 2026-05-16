@@ -586,3 +586,17 @@ int main() {
 
     printf("%d", sum - a[1][1]);
 }
+
+
+
+
+// GCD + Euclid Algorithm
+#include <stdio.h>
+
+int gcd(int a, int b) {
+    return b ? gcd(b, a % b) : a;
+}
+
+int main() {
+    printf("%d", gcd(48,18));
+}
