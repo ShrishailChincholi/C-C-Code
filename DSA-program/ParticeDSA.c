@@ -551,3 +551,18 @@ int main() {
         if (prime[i])
             printf("%d ", i);
 }
+
+
+// Digit DP Style Recursion
+#include <stdio.h>
+
+int sum(int n) {
+    if (!n)
+        return 0;
+
+    return n % 10 + sum(n / 10);
+}
+
+int main() {
+    printf("%d", sum(9876));
+}
