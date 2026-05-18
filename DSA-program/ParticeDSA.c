@@ -645,3 +645,15 @@ int query(int i) {
 
     return s;
 }
+
+int main() {
+    int a[] = {3,1,2};
+    int inv = 0;
+
+    for (int i = 2; i >= 0; i--) {
+        inv += query(a[i] - 1);
+        update(a[i]);
+    }
+
+    printf("%d", inv);
+}
