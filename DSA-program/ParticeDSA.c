@@ -620,3 +620,17 @@ int main() {
         if (prime[i])
             printf("%d ", i);
 }
+
+
+
+// Inversion Count
+#include <stdio.h>
+
+int bit[100];
+
+void update(int i) {
+    while (i < 100) {
+        bit[i]++;
+        i += i & -i;
+    }
+}
