@@ -634,3 +634,14 @@ void update(int i) {
         i += i & -i;
     }
 }
+
+int query(int i) {
+    int s = 0;
+
+    while (i > 0) {
+        s += bit[i];
+        i -= i & -i;
+    }
+
+    return s;
+}
