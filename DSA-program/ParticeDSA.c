@@ -657,3 +657,35 @@ int main() {
 
     printf("%d", inv);
 }
+
+
+#include <stdio.h>
+
+int bit[100], n = 5;
+
+void update(int i, int val) {
+    while (i <= n) {
+        bit[i] += val;
+        i += i & -i;
+    }
+}
+
+int query(int i) {
+    int sum = 0;
+
+    while (i > 0) {
+        sum += bit[i];
+        i -= i & -i;
+    }
+
+    return sum;
+}
+
+int main() {
+    int a[] = {0,1,2,3,4,5};
+
+    for (int i = 1; i <= n; i++)
+        update(i, a[i]);
+
+    printf("%d", query(3)); 
+}
