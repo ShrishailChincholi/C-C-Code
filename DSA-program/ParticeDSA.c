@@ -689,3 +689,18 @@ int main() {
 
     printf("%d", query(3)); 
 }
+
+
+
+#include <stdio.h>
+
+int duplicate(int a[]) {
+    int slow = a[0], fast = a[0];
+
+    do {
+        slow = a[slow];
+        fast = a[a[fast]];
+    } while (slow != fast);
+
+    return slow;
+}
