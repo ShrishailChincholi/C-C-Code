@@ -715,3 +715,4 @@ int xorN(int n) {
     if (n % 4 == 2) return n + 1;
     return 0;
 }
+
