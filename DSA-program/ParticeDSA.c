@@ -728,3 +728,28 @@ int duplicate(int a[]) {
 
     return slow;
 }
+
+
+
+
+// KMP Algorithm in C
+
+#include <stdio.h>
+#include <string.h>
+
+void lps(char p[], int m, int l[]) {
+    int len = 0, i = 1;
+
+    l[0] = 0;
+
+    while (i < m) {
+        if (p[i] == p[len])
+            l[i++] = ++len;
+
+        else if (len)
+            len = l[len - 1];
+
+        else
+            l[i++] = 0;
+    }
+}
