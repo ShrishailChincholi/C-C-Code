@@ -753,3 +753,33 @@ void lps(char p[], int m, int l[]) {
             l[i++] = 0;
     }
 }
+
+
+void kmp(char t[], char p[]) {
+    int n = strlen(t);
+    int m = strlen(p);
+
+    int l[m];
+    lps(p, m, l);
+
+    int i = 0, j = 0;
+
+    while (i < n) {
+        if (t[i] == p[j]) {
+            i++;
+            j++;
+        }
+
+        if (j == m) {
+            printf("Found at %d\n", i - j);
+            j = l[j - 1];
+        }
+
+        else if (i < n && t[i] != p[j]) {
+            if (j)
+                j = l[j - 1];
+            else
+                i++;
+        }
+    }
+}
