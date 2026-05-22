@@ -783,3 +783,11 @@ void kmp(char t[], char p[]) {
         }
     }
 }
+
+
+int main() {
+    char t[] = "ABABDABACDABABCABAB";
+    char p[] = "ABABCABAB";
+
+    kmp(t,p);
+}
