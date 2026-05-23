@@ -833,3 +833,12 @@ int search(struct Trie *root, char *s) {
 
     return root->end;
 }
+
+
+int main() {
+    struct Trie *root = node();
+
+    insert(root,"cat");
+
+    printf("%d", search(root,"cat"));
+}
