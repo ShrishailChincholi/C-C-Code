@@ -791,3 +791,31 @@ int main() {
 
     kmp(t,p);
 }
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Trie {
+    struct Trie *child[26];
+    int end;
+};
+
+struct Trie* node() {
+    struct Trie *t = calloc(1,sizeof(struct Trie));
+    return t;
+}
+
+void insert(struct Trie *root, char *s) {
+    while (*s) {
+        int i = *s - 'a';
+
+        if (!root->child[i])
+            root->child[i] = node();
+
+        root = root->child[i];
+        s++;
+    }
+
+    root->end = 1;
+}
