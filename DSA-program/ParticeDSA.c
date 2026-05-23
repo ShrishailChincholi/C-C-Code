@@ -819,3 +819,17 @@ void insert(struct Trie *root, char *s) {
 
     root->end = 1;
 }
+
+int search(struct Trie *root, char *s) {
+    while (*s) {
+        int i = *s - 'a';
+
+        if (!root->child[i])
+            return 0;
+
+        root = root->child[i];
+        s++;
+    }
+
+    return root->end;
+}
