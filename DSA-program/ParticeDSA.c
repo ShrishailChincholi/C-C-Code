@@ -852,3 +852,17 @@ struct Power {
     long long (*calc)(long long,int);
 };
 
+
+long long solve(long long a, int b) {
+    long long r = 1;
+
+    while (b) {
+        if (b & 1)
+            r *= a;
+
+        a *= a;
+        b >>= 1;
+    }
+
+    return r;
+}
