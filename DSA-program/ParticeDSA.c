@@ -842,3 +842,13 @@ int main() {
 
     printf("%d", search(root,"cat"));
 }
+
+
+
+
+#include <stdio.h>
+
+struct Power {
+    long long (*calc)(long long,int);
+};
+
