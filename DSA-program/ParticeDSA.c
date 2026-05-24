@@ -866,3 +866,9 @@ long long solve(long long a, int b) {
 
     return r;
 }
+
+int main() {
+    struct Power p = {solve};
+
+    printf("%lld", p.calc(2,10));
+}
