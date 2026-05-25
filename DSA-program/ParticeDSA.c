@@ -872,3 +872,32 @@ int main() {
 
     printf("%lld", p.calc(2,10));
 }
+
+
+
+#include <stdio.h>
+
+struct Kadane {
+    int (*max)(int[],int);
+};
+
+int solve(int a[], int n) {
+    int sum = a[0], mx = a[0];
+
+    for (int i = 1; i < n; i++) {
+        sum = (a[i] > sum + a[i]) ? a[i] : sum + a[i];
+
+        if (sum > mx)
+            mx = sum;
+    }
+
+    return mx;
+}
+
+int main() {
+    int a[] = {-2,1,-3,4,-1,2,1,-5,4};
+
+    struct Kadane k = {solve};
+
+    printf("%d", k.max(a,9));
+}
