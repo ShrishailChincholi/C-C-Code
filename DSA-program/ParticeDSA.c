@@ -901,3 +901,16 @@ int main() {
 
     printf("%d", k.max(a,9));
 }
+
+
+#include <stdio.h>
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int (*ptr)(int, int) = add;
+
+    printf("%d", ptr(10, 20));
+}
