@@ -929,3 +929,19 @@ int main() {
 
     printf("%d", fun[choice](10,5));
 }
+
+
+
+
+#include <stdio.h>
+
+int add(int a,int b){ return a+b; }
+int sub(int a,int b){ return a-b; }
+
+int main() {
+    int choice = 1;
+
+    int (*fun[])(int,int) = {add, sub};
+
+    printf("%d", fun[choice](10,5));
+}
