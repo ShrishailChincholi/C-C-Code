@@ -945,3 +945,21 @@ int main() {
 
     printf("%d", fun[choice](10,5));
 }
+
+
+
+#include <stdio.h>
+
+typedef struct {
+    int (*square)(int);
+} Math;
+
+int sq(int x) {
+    return x*x;
+}
+
+int main() {
+    Math m = {sq};
+
+    printf("%d", m.square(5));
+}
