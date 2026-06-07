@@ -963,3 +963,24 @@ int main() {
 
     printf("%d", m.square(5));
 }
+
+
+
+
+
+#include <stdio.h>
+
+unsigned int reverseBits(unsigned int n) {
+    unsigned int rev = 0;
+
+    while (n) {
+        rev = (rev << 1) | (n & 1);
+        n >>= 1;
+    }
+
+    return rev;
+}
+
+int main() {
+    printf("%u", reverseBits(13));
+}
