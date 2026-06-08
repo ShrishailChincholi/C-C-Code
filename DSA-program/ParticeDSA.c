@@ -984,3 +984,22 @@ unsigned int reverseBits(unsigned int n) {
 int main() {
     printf("%u", reverseBits(13));
 }
+
+
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int a[] = {2,2,2,5,5,5,9};
+    int ones = 0, twos = 0;
+
+    for(int i=0;i<7;i++) {
+        ones = (ones ^ a[i]) & ~twos;
+        twos = (twos ^ a[i]) & ~ones;
+    }
+
+    printf("%d", ones);
+}
