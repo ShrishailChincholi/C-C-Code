@@ -1003,3 +1003,21 @@ int main() {
 
     printf("%d", ones);
 }
+
+
+#include <stdio.h>
+
+int f(int x) {
+    return (x * x + 1) % 255;
+}
+
+int main() {
+    int slow = 2, fast = 2;
+
+    do {
+        slow = f(slow);
+        fast = f(f(fast));
+    } while (slow != fast);
+
+    printf("Cycle Found");
+}
