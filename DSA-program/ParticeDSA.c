@@ -1021,3 +1021,15 @@ int main() {
 
     printf("Cycle Found");
 }
+
+
+
+#include <stdio.h>
+
+long long moves(int n){
+    return (1LL<<n)-1;
+}
+
+int main(){
+    printf("%lld", moves(20));
+}
