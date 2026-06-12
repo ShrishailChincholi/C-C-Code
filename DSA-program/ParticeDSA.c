@@ -1033,3 +1033,15 @@ long long moves(int n){
 int main(){
     printf("%lld", moves(20));
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int n = 156;
+
+    while(n & (n-1))
+        n &= (n-1);
+
+    printf("%d", n);
+}
