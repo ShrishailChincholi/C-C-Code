@@ -1045,3 +1045,23 @@ int main() {
 
     printf("%d", n);
 }
+
+
+
+#include <stdio.h>
+
+int dp[1000];
+
+int fib(int n) {
+    if(n <= 1)
+        return n;
+
+    if(dp[n])
+        return dp[n];
+
+    return dp[n] = fib(n-1) + fib(n-2);
+}
+
+int main() {
+    printf("%d", fib(40));
+}
