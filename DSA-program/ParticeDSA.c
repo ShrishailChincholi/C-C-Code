@@ -1065,3 +1065,25 @@ int fib(int n) {
 int main() {
     printf("%d", fib(40));
 }
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char p[]="ababaca";
+    int lps[100]={0};
+
+    for(int i=1,len=0;p[i];){
+        if(p[i]==p[len])
+            lps[i++]=++len;
+        else if(len)
+            len=lps[len-1];
+        else
+            i++;
+    }
+
+    for(int i=0;i<7;i++)
+        printf("%d ",lps[i]);
+}
