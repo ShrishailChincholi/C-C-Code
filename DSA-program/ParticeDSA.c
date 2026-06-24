@@ -1104,3 +1104,19 @@ int partition(int a[], int l, int r) {
 
     return i;
 }
+
+int kth(int a[], int l, int r, int k) {
+    int p = partition(a,l,r);
+
+    if(p == k) return a[p];
+
+    return p > k ?
+           kth(a,l,p-1,k) :
+           kth(a,p+1,r,k);
+}
+
+int main() {
+    int a[]={7,4,6,3,9,1};
+
+    printf("%d", kth(a,0,5,2));
+}
