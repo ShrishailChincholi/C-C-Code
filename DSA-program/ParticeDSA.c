@@ -1087,3 +1087,20 @@ int main() {
     for(int i=0;i<7;i++)
         printf("%d ",lps[i]);
 }
+
+
+#include <stdio.h>
+
+int partition(int a[], int l, int r) {
+    int p = a[r], i = l;
+
+    for(int j=l;j<r;j++)
+        if(a[j] <= p) {
+            int t=a[i]; a[i]=a[j]; a[j]=t;
+            i++;
+        }
+
+    int t=a[i]; a[i]=a[r]; a[r]=t;
+
+    return i;
+}
