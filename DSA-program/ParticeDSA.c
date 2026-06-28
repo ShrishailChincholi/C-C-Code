@@ -1120,3 +1120,18 @@ int main() {
 
     printf("%d", kth(a,0,5,2));
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int n=3;
+
+    for(int mask=0; mask<(1<<n); mask++) {
+        for(int i=0;i<n;i++)
+            if(mask&(1<<i))
+                printf("%d ",i);
+
+        printf("\n");
+    }
+}
