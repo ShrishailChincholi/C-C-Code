@@ -1135,3 +1135,14 @@ int main() {
         printf("\n");
     }
 }
+
+
+#include <stdio.h>
+
+int josephus(int n, int k) {
+    return n == 1 ? 0 : (josephus(n - 1, k) + k) % n;
+}
+
+int main() {
+    printf("%d", josephus(7, 3) + 1);
+}
