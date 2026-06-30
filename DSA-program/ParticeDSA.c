@@ -1153,6 +1153,7 @@ int main() {
 
 int dp[100];
 
+
 int fib(int n) {
     if (n < 2)
         return n;
@@ -1162,6 +1163,7 @@ int fib(int n) {
 
     return dp[n] = fib(n - 1) + fib(n - 2);
 }
+
 
 int main() {
     printf("%d", fib(40));
