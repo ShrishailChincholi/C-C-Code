@@ -1146,3 +1146,23 @@ int josephus(int n, int k) {
 int main() {
     printf("%d", josephus(7, 3) + 1);
 }
+
+
+
+#include <stdio.h>
+
+int dp[100];
+
+int fib(int n) {
+    if (n < 2)
+        return n;
+
+    if (dp[n])
+        return dp[n];
+
+    return dp[n] = fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+    printf("%d", fib(40));
+}
