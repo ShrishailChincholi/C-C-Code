@@ -1168,3 +1168,15 @@ int fib(int n) {
 int main() {
     printf("%d", fib(40));
 }
+
+
+
+// Letcode
+int singleNumber(int* nums, int n) {
+    int x = 0;
+
+    for (int i = 0; i < n; i++)
+        x ^= nums[i];
+
+    return x;
+}
