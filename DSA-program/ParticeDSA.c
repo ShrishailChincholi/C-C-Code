@@ -1219,4 +1219,12 @@ int findDuplicate(int nums[], int n) {
 
     return slow;
 }
+int main() {
+
+    int nums[] = {1,3,4,2,2};
+
+    printf("%d", findDuplicate(nums, 5));
+
+    return 0;
+}
 
