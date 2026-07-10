@@ -1228,3 +1228,26 @@ int main() {
     return 0;
 }
 
+
+#include <stdio.h>
+
+int majorityElement(int a[], int n) {
+    int count = 0, ans = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        if (count == 0)
+            ans = a[i];
+
+        count += (a[i] == ans) ? 1 : -1;
+    }
+
+    return ans;
+}
+
+int main() {
+    int a[] = {2,2,1,1,1,2,2};
+
+    printf("%d", majorityElement(a, 7));
+    return 0;
+}
