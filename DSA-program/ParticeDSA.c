@@ -1305,3 +1305,26 @@ int main(){
     for(int i=0;i<6;i++)
         printf("%d ",a[i]);
 }
+
+
+
+#include <stdio.h>
+
+int main(){
+
+    int a[]={4,3,2,7,8,2,3,1};
+
+    int n=8;
+
+    for(int i=0;i<n;i++){
+
+        int x=abs(a[i])-1;
+
+        if(a[x]>0)
+            a[x]=-a[x];
+    }
+
+    for(int i=0;i<n;i++)
+        if(a[i]>0)
+            printf("%d ",i+1);
+}
