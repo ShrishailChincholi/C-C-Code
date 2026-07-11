@@ -1251,3 +1251,26 @@ int main() {
     printf("%d", majorityElement(a, 7));
     return 0;
 }
+
+
+#include <stdio.h>
+
+int maxSubArray(int a[], int n) {
+    int sum = a[0], max = a[0];
+
+    for (int i = 1; i < n; i++) {
+        sum = (sum + a[i] > a[i]) ? sum + a[i] : a[i];
+
+        if (sum > max)
+            max = sum;
+    }
+
+    return max;
+}
+
+int main() {
+    int a[] = {-2,1,-3,4,-1,2,1,-5,4};
+
+    printf("%d", maxSubArray(a, 9));
+    return 0;
+}
