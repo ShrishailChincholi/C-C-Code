@@ -1274,3 +1274,34 @@ int main() {
     printf("%d", maxSubArray(a, 9));
     return 0;
 }
+
+
+#include <stdio.h>
+
+void swap(int *a,int *b){
+    int t=*a;
+    *a=*b;
+    *b=t;
+}
+
+int main(){
+
+    int a[]={2,0,2,1,1,0};
+
+    int l=0,m=0,h=5;
+
+    while(m<=h){
+
+        if(a[m]==0)
+            swap(&a[l++],&a[m++]);
+
+        else if(a[m]==1)
+            m++;
+
+        else
+            swap(&a[m],&a[h--]);
+    }
+
+    for(int i=0;i<6;i++)
+        printf("%d ",a[i]);
+}
