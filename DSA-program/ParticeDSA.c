@@ -1328,3 +1328,28 @@ int main(){
         if(a[i]>0)
             printf("%d ",i+1);
 }
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int price[] = {7,1,5,3,6,4};
+    int n = 6;
+
+    int min = price[0];
+    int profit = 0;
+
+    for(int i = 1; i < n; i++) {
+        if(price[i] < min)
+            min = price[i];
+
+        if(price[i] - min > profit)
+            profit = price[i] - min;
+    }
+
+    printf("Maximum Profit = %d", profit);
+
+    return 0;
+}
