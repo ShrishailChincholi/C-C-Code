@@ -1353,3 +1353,27 @@ int main() {
 
     return 0;
 }
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int a[] = {0,1,0,3,12};
+    int n = 5;
+
+    int j = 0;
+
+    for (int i = 0; i < n; i++)
+        if (a[i] != 0)
+            a[j++] = a[i];
+
+    while (j < n)
+        a[j++] = 0;
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
