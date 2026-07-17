@@ -1400,3 +1400,27 @@ void reverse(int a[], int start, int end)
         end--;
     }
 }
+
+
+void nextPermutation(int a[], int n)
+{
+    int i = n - 2;
+
+    // Step 1: Find first decreasing element
+    while (i >= 0 && a[i] >= a[i + 1])
+        i--;
+
+    // Step 2: Find next greater element
+    if (i >= 0)
+    {
+        int j = n - 1;
+
+        while (a[j] <= a[i])
+            j--;
+
+        swap(&a[i], &a[j]);
+    }
+
+    // Step 3: Reverse remaining part
+    reverse(a, i + 1, n - 1);
+}
