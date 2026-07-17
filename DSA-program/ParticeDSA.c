@@ -1377,3 +1377,26 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+#include <stdio.h>
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void reverse(int a[], int start, int end)
+{
+    while (start < end)
+    {
+        swap(&a[start], &a[end]);
+        start++;
+        end--;
+    }
+}
