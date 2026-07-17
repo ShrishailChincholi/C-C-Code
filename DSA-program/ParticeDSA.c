@@ -1424,3 +1424,18 @@ void nextPermutation(int a[], int n)
     // Step 3: Reverse remaining part
     reverse(a, i + 1, n - 1);
 }
+
+int main()
+{
+    int a[] = {1, 2, 3};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    nextPermutation(a, n);
+
+    printf("Next Permutation: ");
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
