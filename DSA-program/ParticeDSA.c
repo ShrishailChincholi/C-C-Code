@@ -1478,3 +1478,25 @@ int dfs(int i, int j, char word[], int k)
     return found;
 }
 
+int exist(char word[])
+{
+    for(int i=0;i<ROW;i++)
+        for(int j=0;j<COL;j++)
+            if(dfs(i,j,word,0))
+                return 1;
+
+    return 0;
+}
+
+int main()
+{
+    char word[]="ABCCED";
+
+    if(exist(word))
+        printf("Word Found");
+    else
+        printf("Word Not Found");
+
+    return 0;
+}
+
