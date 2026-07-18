@@ -1439,3 +1439,42 @@ int main()
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+#define ROW 3
+#define COL 4
+
+char board[ROW][COL] = {
+    {'A','B','C','E'},
+    {'S','F','C','S'},
+    {'A','D','E','E'}
+};
+
+int dfs(int i, int j, char word[], int k)
+{
+    if(word[k]=='\0')
+        return 1;
+
+    if(i<0 || j<0 || i>=ROW || j>=COL)
+        return 0;
+
+    if(board[i][j]!=word[k])
+        return 0;
+
+    char temp=board[i][j];
+    board[i][j]='*';
+
+    int found =
+        dfs(i+1,j,word,k+1) ||
+        dfs(i-1,j,word,k+1) ||
+        dfs(i,j+1,word,k+1) ||
+        dfs(i,j-1,word,k+1);
+
+    board[i][j]=temp;
+
+    return found;
+}
+
