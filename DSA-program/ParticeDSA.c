@@ -1523,3 +1523,32 @@ void sort(int a[], int n)
                 swap(&a[i],&a[j]);
 }
 
+
+void printSubset(int a[], int subset[], int size)
+{
+    printf("{ ");
+
+    for(int i=0;i<size;i++)
+        printf("%d ", subset[i]);
+
+    printf("}\n");
+}
+
+void backtrack(int nums[], int n, int start,
+               int subset[], int size)
+{
+    printSubset(nums, subset, size);
+
+    for(int i=start;i<n;i++)
+    {
+        // Skip duplicate elements
+        if(i>start && nums[i]==nums[i-1])
+            continue;
+
+        subset[size]=nums[i];
+
+        backtrack(nums,n,i+1,subset,size+1);
+    }
+}
+
+
