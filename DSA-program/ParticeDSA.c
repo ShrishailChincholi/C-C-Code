@@ -1551,4 +1551,17 @@ void backtrack(int nums[], int n, int start,
     }
 }
 
+int main()
+{
+    int nums[]={1,2,2};
 
+    int n=sizeof(nums)/sizeof(nums[0]);
+
+    sort(nums,n);
+
+    int subset[20];
+
+    backtrack(nums,n,0,subset,0);
+
+    return 0;
+}
