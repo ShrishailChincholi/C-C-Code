@@ -1565,3 +1565,20 @@ int main()
 
     return 0;
 }
+
+
+#include <stdio.h>
+
+int main() {
+    int x = 3, y = 5;
+    int ans = 0;
+
+    x ^= y;
+
+    while(x) {
+        ans++;
+        x &= x - 1;
+    }
+
+    printf("%d", ans);
+}
