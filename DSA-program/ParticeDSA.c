@@ -1582,3 +1582,48 @@ int main() {
 
     printf("%d", ans);
 }
+
+
+#include <stdio.h>
+
+#define V 4
+
+int graph[V][V] = {
+    {0,1,0,1},
+    {1,0,1,0},
+    {0,1,0,1},
+    {1,0,1,0}
+};
+
+int visited[V];
+
+int dfs(int v, int parent)
+{
+    visited[v] = 1;
+
+    for(int i = 0; i < V; i++)
+    {
+        if(graph[v][i])
+        {
+            if(!visited[i])
+            {
+                if(dfs(i, v))
+                    return 1;
+            }
+            else if(i != parent)
+                return 1;
+        }
+    }
+
+    return 0;
+}
+
+int main()
+{
+    if(dfs(0, -1))
+        printf("Cycle Found");
+    else
+        printf("No Cycle");
+
+    return 0;
+}
