@@ -1674,3 +1674,53 @@ void insert(Trie *root, char *word) {
 
     root->end = 1;
 }
+
+void dfs(Trie *root, int r, int c, char path[], int idx) {
+
+    if (r < 0 || c < 0 || r >= ROW || c >= COL)
+        return;
+
+    char ch = board[r][c];
+
+    if (ch == '#')
+        return;
+
+    root = root->child[ch - 'a'];
+
+    if (!root)
+        return;
+
+    path[idx] = ch;
+    path[idx + 1] = '\0';
+
+    if (root->end) {
+        printf("%s\n", path);
+        root->end = 0;
+    }
+
+    board[r][c] = '#';
+
+    dfs(root, r + 1, c, path, idx + 1);
+    dfs(root, r - 1, c, path, idx + 1);
+    dfs(root, r, c + 1, path, idx + 1);
+    dfs(root, r, c - 1, path, idx + 1);
+
+    board[r][c] = ch;
+}
+
+
+int main() {
+
+    Trie *root = newNode();
+
+    for (int i = 0; i < 4; i++)
+        insert(root, words[i]);
+
+    char path[20];
+
+    for (int i = 0; i < ROW; i++)
+        for (int j = 0; j < COL; j++)
+            dfs(root, i, j, path, 0);
+
+    return 0;
+}
