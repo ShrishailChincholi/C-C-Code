@@ -1659,3 +1659,18 @@ Trie *newNode() {
     Trie *node = (Trie *)calloc(1, sizeof(Trie));
     return node;
 }
+
+
+void insert(Trie *root, char *word) {
+    while (*word) {
+        int i = *word - 'a';
+
+        if (!root->child[i])
+            root->child[i] = newNode();
+
+        root = root->child[i];
+        word++;
+    }
+
+    root->end = 1;
+}
