@@ -1627,3 +1627,35 @@ int main()
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define ROW 4
+#define COL 4
+
+char board[ROW][COL] = {
+    {'o','a','a','n'},
+    {'e','t','a','e'},
+    {'i','h','k','r'},
+    {'i','f','l','v'}
+};
+
+char *words[] = {
+    "oath",
+    "pea",
+    "eat",
+    "rain"
+};
+
+typedef struct Trie {
+    struct Trie *child[26];
+    int end;
+} Trie;
+
+Trie *newNode() {
+    Trie *node = (Trie *)calloc(1, sizeof(Trie));
+    return node;
+}
