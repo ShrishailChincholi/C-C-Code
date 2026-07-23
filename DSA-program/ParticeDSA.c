@@ -1724,3 +1724,21 @@ int main() {
 
     return 0;
 }
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char txt[]="GEEKSFORGEEKS";
+    char pat[]="GEEK";
+
+    int m=strlen(pat),n=strlen(txt);
+
+    for(int i=0;i<=n-m;i++)
+    {
+        if(strncmp(txt+i,pat,m)==0)
+            printf("%d ",i);
+    }
+}
