@@ -1792,3 +1792,19 @@ int query(int index)
 
     return sum;
 }
+
+int main()
+{
+    int arr[] = {2,1,3,5,4};
+
+    for(int i = 0; i < 5; i++)
+        update(i + 1, arr[i]);
+
+    printf("Prefix Sum(3) = %d\n", query(3));
+
+    update(2, 4);
+
+    printf("After Update Prefix Sum(3) = %d\n", query(3));
+
+    return 0;
+}
