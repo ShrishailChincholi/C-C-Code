@@ -1763,3 +1763,32 @@ void unite(int a,int b)
 {
     parent[find(a)]=find(b);
 }
+
+
+#include <stdio.h>
+
+#define N 10
+
+int BIT[N] = {0};
+
+void update(int index, int value)
+{
+    while(index < N)
+    {
+        BIT[index] += value;
+        index += index & (-index);
+    }
+}
+
+int query(int index)
+{
+    int sum = 0;
+
+    while(index > 0)
+    {
+        sum += BIT[index];
+        index -= index & (-index);
+    }
+
+    return sum;
+}
