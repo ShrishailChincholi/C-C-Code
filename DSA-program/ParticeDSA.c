@@ -1742,3 +1742,24 @@ int main()
             printf("%d ",i);
     }
 }
+
+
+
+#include <stdio.h>
+
+#define N 10
+
+int parent[N];
+
+int find(int x)
+{
+    if(parent[x]!=x)
+        parent[x]=find(parent[x]);
+
+    return parent[x];
+}
+
+void unite(int a,int b)
+{
+    parent[find(a)]=find(b);
+}
