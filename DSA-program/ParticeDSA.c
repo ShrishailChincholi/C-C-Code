@@ -1865,3 +1865,46 @@ void update(int node, int start, int end, int l, int r, int val) {
 
     tree[node] = tree[2 * node] + tree[2 * node + 1];
 }
+
+
+int query(int node, int start, int end, int l, int r) {
+
+    if (start > r || end < l)
+        return 0;
+
+    if (lazy[node] != 0) {
+        tree[node] += (end - start + 1) * lazy[node];
+
+        if (start != end) {
+            lazy[2 * node] += lazy[node];
+            lazy[2 * node + 1] += lazy[node];
+        }
+
+        lazy[node] = 0;
+    }
+
+    if (start >= l && end <= r)
+        return tree[node];
+
+    int mid = (start + end) / 2;
+
+    return query(2 * node, start, mid, l, r) +
+           query(2 * node + 1, mid + 1, end, l, r);
+}
+
+int main() {
+
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = 5;
+
+    build(1, 0, n - 1, arr);
+
+    printf("Sum(1,3) = %d\n", query(1, 0, n - 1, 1, 3));
+
+    update(1, 0, n - 1, 1, 3, 10);
+
+    printf("After Update Sum(1,3) = %d\n",
+           query(1, 0, n - 1, 1, 3));
+
+    return 0;
+}
