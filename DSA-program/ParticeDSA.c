@@ -1808,3 +1808,25 @@ int main()
 
     return 0;
 }
+
+
+
+#include <stdio.h>
+
+#define MAX 100
+
+int tree[4 * MAX], lazy[4 * MAX];
+
+void build(int node, int start, int end, int arr[]) {
+    if (start == end) {
+        tree[node] = arr[start];
+        return;
+    }
+
+    int mid = (start + end) / 2;
+
+    build(2 * node, start, mid, arr);
+    build(2 * node + 1, mid + 1, end, arr);
+
+    tree[node] = tree[2 * node] + tree[2 * node + 1];
+}
