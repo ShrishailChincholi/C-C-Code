@@ -1919,3 +1919,15 @@ int gcd(int a,int b){
 int main(){
     printf("%d",gcd(48,18));
 }
+
+#include <stdio.h>
+
+int main(){
+    int a=5,b=10;
+
+    a^=b;
+    b^=a;
+    a^=b;
+
+    printf("%d %d",a,b);
+}
