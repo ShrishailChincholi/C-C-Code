@@ -69,3 +69,37 @@ void sort(int a[], int n)
                 a[j]=t;
             }
 }
+
+int longest(int a[],int n)
+{
+    sort(a,n);
+
+    int ans=1,c=1;
+
+    for(int i=1;i<n;i++)
+    {
+        if(a[i]==a[i-1])
+            continue;
+
+        if(a[i]==a[i-1]+1)
+            c++;
+        else
+            c=1;
+
+        if(c>ans)
+            ans=c;
+    }
+
+    return ans;
+}
+
+int main()
+{
+    int a[]={100,4,200,1,3,2};
+
+    int n=sizeof(a)/sizeof(a[0]);
+
+    printf("%d",longest(a,n));
+
+    return 0;
+}
