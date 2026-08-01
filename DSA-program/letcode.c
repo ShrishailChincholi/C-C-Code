@@ -103,3 +103,44 @@ int main()
 
     return 0;
 }
+
+
+
+// LeetCode 315 – Count of Smaller Numbers After Self (C)
+#include <stdio.h>
+
+typedef struct{
+    int val, idx;
+}Node;
+
+void merge(Node a[], int l, int m, int r, int ans[])
+{
+    int i=l,j=m+1,k=0,right=0;
+    Node temp[r-l+1];
+
+    while(i<=m && j<=r)
+    {
+        if(a[j].val<a[i].val)
+        {
+            temp[k++]=a[j++];
+            right++;
+        }
+        else
+        {
+            ans[a[i].idx]+=right;
+            temp[k++]=a[i++];
+        }
+    }
+
+    while(i<=m)
+    {
+        ans[a[i].idx]+=right;
+        temp[k++]=a[i++];
+    }
+
+    while(j<=r)
+        temp[k++]=a[j++];
+
+    for(i=l,k=0;i<=r;i++,k++)
+        a[i]=temp[k];
+}
