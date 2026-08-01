@@ -157,3 +157,27 @@ void mergeSort(Node a[], int l, int r, int ans[])
 
     merge(a,l,m,r,ans);
 }
+
+int main()
+{
+    int nums[]={5,2,6,1};
+    int n=4;
+
+    Node a[4];
+    int ans[4]={0};
+
+    for(int i=0;i<n;i++)
+    {
+        a[i].val=nums[i];
+        a[i].idx=i;
+    }
+
+    mergeSort(a,0,n-1,ans);
+
+    printf("Output: ");
+
+    for(int i=0;i<n;i++)
+        printf("%d ",ans[i]);
+
+    return 0;
+}
