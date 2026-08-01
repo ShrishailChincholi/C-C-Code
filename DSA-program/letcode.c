@@ -144,3 +144,16 @@ void merge(Node a[], int l, int m, int r, int ans[])
     for(i=l,k=0;i<=r;i++,k++)
         a[i]=temp[k];
 }
+
+
+void mergeSort(Node a[], int l, int r, int ans[])
+{
+    if(l>=r) return;
+
+    int m=(l+r)/2;
+
+    mergeSort(a,l,m,ans);
+    mergeSort(a,m+1,r,ans);
+
+    merge(a,l,m,r,ans);
+}
