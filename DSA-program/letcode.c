@@ -224,3 +224,41 @@ void merge(Node a[], int l, int m, int r, int ans[])
     for(i=l,k=0;i<=r;i++,k++)
         a[i]=temp[k];
 }
+
+
+void mergeSort(Node a[],int l,int r,int ans[])
+{
+    if(l>=r) return;
+
+    int mid=(l+r)/2;
+
+    mergeSort(a,l,mid,ans);
+    mergeSort(a,mid+1,r,ans);
+
+    merge(a,l,mid,r,ans);
+}
+
+int main()
+{
+    int nums[]={5,2,6,1};
+    int n=sizeof(nums)/sizeof(nums[0]);
+
+    Node a[n];
+    int ans[n];
+
+    for(int i=0;i<n;i++)
+    {
+        a[i].val=nums[i];
+        a[i].index=i;
+        ans[i]=0;
+    }
+
+    mergeSort(a,0,n-1,ans);
+
+    printf("Output: ");
+
+    for(int i=0;i<n;i++)
+        printf("%d ",ans[i]);
+
+    return 0;
+}
