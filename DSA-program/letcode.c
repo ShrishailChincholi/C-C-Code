@@ -290,3 +290,28 @@ int hasCycle(struct Node *head)
 
     return 0;
 }
+
+int main()
+{
+    struct Node *a = malloc(sizeof(struct Node));
+    struct Node *b = malloc(sizeof(struct Node));
+    struct Node *c = malloc(sizeof(struct Node));
+    struct Node *d = malloc(sizeof(struct Node));
+
+    a->data=1;
+    b->data=2;
+    c->data=3;
+    d->data=4;
+
+    a->next=b;
+    b->next=c;
+    c->next=d;
+    d->next=b;      
+
+    if(hasCycle(a))
+        printf("Cycle Found");
+    else
+        printf("No Cycle");
+
+    return 0;
+}
