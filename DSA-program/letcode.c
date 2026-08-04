@@ -315,3 +315,30 @@ int main()
 
     return 0;
 }
+
+
+// LeetCode 3 – Longest Substring Without Repeating Characters
+#include <stdio.h>
+#include <string.h>
+
+int lengthOfLongestSubstring(char s[])
+{
+    int last[256];
+    int start = 0, max = 0;
+
+    for(int i=0;i<256;i++)
+        last[i] = -1;
+
+    for(int i=0;i<strlen(s);i++)
+    {
+        if(last[s[i]] >= start)
+            start = last[s[i]] + 1;
+
+        last[s[i]] = i;
+
+        if(i-start+1 > max)
+            max = i-start+1;
+    }
+
+    return max;
+}
