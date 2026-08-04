@@ -342,3 +342,12 @@ int lengthOfLongestSubstring(char s[])
 
     return max;
 }
+
+int main()
+{
+    char s[]="abcabcbb";
+
+    printf("%d",lengthOfLongestSubstring(s));
+
+    return 0;
+}
