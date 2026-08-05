@@ -351,3 +351,20 @@ int main()
 
     return 0;
 }
+
+//Remove Duplicates from Sorted Array
+
+#include <stdio.h>
+
+int main()
+{
+    int a[]={1,1,2,2,3,4,4};
+    int n=7,k=1;
+
+    for(int i=1;i<n;i++)
+        if(a[i]!=a[i-1])
+            a[k++]=a[i];
+
+    for(int i=0;i<k;i++)
+        printf("%d ",a[i]);
+}
