@@ -368,3 +368,27 @@ int main()
     for(int i=0;i<k;i++)
         printf("%d ",a[i]);
 }
+
+//jump game
+
+#include <stdio.h>
+
+int main()
+{
+    int a[]={2,3,1,1,4};
+    int reach=0,n=5;
+
+    for(int i=0;i<n;i++)
+    {
+        if(i>reach)
+        {
+            printf("False");
+            return 0;
+        }
+
+        if(i+a[i]>reach)
+            reach=i+a[i];
+    }
+
+    printf("True");
+}
