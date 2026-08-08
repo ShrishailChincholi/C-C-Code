@@ -423,3 +423,34 @@ int main()
 
     return 0;
 }
+
+
+
+// LeetCode 105 – Construct Binary Tree from Preorder and Inorder Traversal
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node *left, *right;
+} Node;
+
+Node* build(int pre[], int in[], int l, int r, int *p)
+{
+    if(l > r)
+        return NULL;
+
+    Node *root = malloc(sizeof(Node));
+    root->val = pre[(*p)++];
+    root->left = root->right = NULL;
+
+    int k = l;
+
+    while(in[k] != root->val)
+        k++;
+
+    root->left = build(pre, in, l, k-1, p);
+    root->right = build(pre, in, k+1, r, p);
+
+    return root;
+}
