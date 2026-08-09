@@ -478,3 +478,60 @@ int main()
 
     return 0;
 }
+
+
+
+// LeetCode 207 – Course Schedule (C)
+
+#include <stdio.h>
+
+int canFinish(int n, int p[][2], int m)
+{
+    int graph[100][100] = {0};
+    int indegree[100] = {0};
+    int q[100], front = 0, rear = 0;
+
+    for(int i = 0; i < m; i++)
+    {
+        int a = p[i][0];
+        int b = p[i][1];
+
+        graph[b][a] = 1;
+        indegree[a]++;
+    }
+
+    for(int i = 0; i < n; i++)
+        if(indegree[i] == 0)
+            q[rear++] = i;
+
+    int count = 0;
+
+    while(front < rear)
+    {
+        int u = q[front++];
+        count++;
+
+        for(int v = 0; v < n; v++)
+        {
+            if(graph[u][v])
+            {
+                indegree[v]--;
+
+                if(indegree[v] == 0)
+                    q[rear++] = v;
+            }
+        }
+    }
+
+    return count == n;
+}
+
+int main()
+{
+    int p[][2] = {{1,0}};
+    int n = 2;
+
+    printf("%s", canFinish(n, p, 1) ? "True" : "False");
+
+    return 0;
+}
