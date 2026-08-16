@@ -535,3 +535,65 @@ int main()
 
     return 0;
 }
+
+
+// LeetCode #49 – Group Anagrams (C)
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+    char key[27];
+    char *words[100];
+    int count;
+} Group;
+
+int main()
+{
+    char *s[] = {"eat","tea","tan","ate","nat","bat"};
+    int n = 6, g = 0;
+    Group a[100];
+
+    for(int i = 0; i < n; i++)
+    {
+        char key[27] = {0};
+        int cnt[26] = {0};
+
+        for(int j = 0; s[i][j]; j++)
+            cnt[s[i][j] - 'a']++;
+
+        int k = 0;
+        for(int j = 0; j < 26; j++)
+            while(cnt[j]--)
+                key[k++] = 'a' + j;
+
+        int found = -1;
+
+        for(int j = 0; j < g; j++)
+            if(strcmp(a[j].key, key) == 0)
+            {
+                found = j;
+                break;
+            }
+
+        if(found == -1)
+        {
+            strcpy(a[g].key, key);
+            a[g].words[0] = s[i];
+            a[g].count = 1;
+            g++;
+        }
+        else
+            a[found].words[a[found].count++] = s[i];
+    }
+
+    for(int i = 0; i < g; i++)
+    {
+        printf("[ ");
+        for(int j = 0; j < a[i].count; j++)
+            printf("%s ", a[i].words[j]);
+        printf("]\n");
+    }
+
+    return 0;
+}
