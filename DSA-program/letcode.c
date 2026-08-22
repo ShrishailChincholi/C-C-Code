@@ -597,3 +597,33 @@ int main()
 
     return 0;
 }
+
+
+// LeetCode 56 – Merge Intervals (Medium)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void *a,const void *b){
+    return (*(int(*)[2])a)[0]-(*(int(*)[2])b)[0];
+}
+
+int main(){
+    int a[][2]={{1,3},{2,6},{8,10},{15,18}};
+    int n=4,k=0;
+
+    qsort(a,n,sizeof(a[0]),cmp);
+
+    for(int i=1;i<n;i++)
+        if(a[k][1]>=a[i][0]){
+            if(a[i][1]>a[k][1])
+                a[k][1]=a[i][1];
+        }else{
+            k++;
+            a[k][0]=a[i][0];
+            a[k][1]=a[i][1];
+        }
+
+    for(int i=0;i<=k;i++)
+        printf("[%d,%d] ",a[i][0],a[i][1]);
+}
