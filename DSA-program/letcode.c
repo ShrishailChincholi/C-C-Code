@@ -626,4 +626,36 @@ int main(){
 
     for(int i=0;i<=k;i++)
         printf("[%d,%d] ",a[i][0],a[i][1]);
+
+
+    }
+
+
+
+// LeetCode #75 – Sort Colors (Medium)
+#include <stdio.h>
+
+int main() {
+    int a[] = {2,0,2,1,1,0};
+    int n = 6, l = 0, m = 0, r = n - 1;
+
+    while (m <= r) {
+        if (a[m] == 0) {
+            int t = a[l];
+            a[l++] = a[m];
+            a[m++] = t;
+        }
+        else if (a[m] == 2) {
+            int t = a[m];
+            a[m] = a[r];
+            a[r--] = t;
+        }
+        else
+            m++;
+    }
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
 }
