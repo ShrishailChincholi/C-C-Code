@@ -1931,3 +1931,53 @@ int main(){
 
     printf("%d %d",a,b);
 }
+
+
+#include <stdio.h>
+
+int main()
+{
+    int a[] = {1,1,1,2,2,3};
+    int n = 6, k = 2;
+
+    int val[100], freq[100], size = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        int found = -1;
+
+        for(int j = 0; j < size; j++)
+            if(val[j] == a[i])
+            {
+                found = j;
+                break;
+            }
+
+        if(found == -1)
+        {
+            val[size] = a[i];
+            freq[size++] = 1;
+        }
+        else
+            freq[found]++;
+    }
+
+    /* Sort by frequency */
+    for(int i = 0; i < size; i++)
+        for(int j = i + 1; j < size; j++)
+            if(freq[i] < freq[j])
+            {
+                int t = freq[i];
+                freq[i] = freq[j];
+                freq[j] = t;
+
+                t = val[i];
+                val[i] = val[j];
+                val[j] = t;
+            }
+
+    for(int i = 0; i < k; i++)
+        printf("%d ", val[i]);
+
+    return 0;
+}
