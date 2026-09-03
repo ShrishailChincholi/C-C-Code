@@ -1981,3 +1981,36 @@ int main()
 
     return 0;
 }
+
+// LeetCode 300 — Longest Increasing Subsequence
+
+#include <stdio.h>
+
+int lengthOfLIS(int* a, int n) {
+    int t[n], len = 0;
+
+    for (int i = 0; i < n; i++) {
+        int l = 0, r = len;
+
+        while (l < r) {
+            int m = (l + r) / 2;
+            if (t[m] < a[i])
+                l = m + 1;
+            else
+                r = m;
+        }
+
+        t[l] = a[i];
+        if (l == len) len++;
+    }
+
+    return len;
+}
+
+int main() {
+    int a[] = {10, 9, 2, 5, 3, 7, 101, 18};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    printf("%d", lengthOfLIS(a, n));
+    return 0;
+}
