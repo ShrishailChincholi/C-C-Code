@@ -2014,3 +2014,40 @@ int main() {
     printf("%d", lengthOfLIS(a, n));
     return 0;
 }
+
+
+
+// LeetCode 215 — Kth Largest Element in an Array
+
+#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int quickselect(int a[], int l, int r, int k) {
+    int p = a[r], i = l;
+
+    for (int j = l; j < r; j++)
+        if (a[j] <= p)
+            swap(&a[i++], &a[j]);
+
+    swap(&a[i], &a[r]);
+
+    if (i == k) return a[i];
+    if (i > k) return quickselect(a, l, i - 1, k);
+    return quickselect(a, i + 1, r, k);
+}
+
+int findKthLargest(int a[], int n, int k) {
+    return quickselect(a, 0, n - 1, n - k);
+}
+
+int main() {
+    int a[] = {3, 2, 1, 5, 6, 4};
+
+    printf("%d", findKthLargest(a, 6, 2));
+    return 0;
+}
