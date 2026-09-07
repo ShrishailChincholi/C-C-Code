@@ -2051,3 +2051,42 @@ int main() {
     printf("%d", findKthLargest(a, 6, 2));
     return 0;
 }
+
+
+// LeetCode 239 — Sliding Window Maximum
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int* maxSlidingWindow(int* a, int n, int k, int* ret) {
+    int *q = malloc(n * sizeof(int));
+    int *ans = malloc((n-k+1) * sizeof(int));
+    int f = 0, b = 0, x = 0;
+
+    for (int i = 0; i < n; i++) {
+        while (f < b && q[f] <= i-k) f++;
+        while (f < b && a[q[b-1]] <= a[i]) b--;
+
+        q[b++] = i;
+
+        if (i >= k-1)
+            ans[x++] = a[q[f]];
+    }
+
+    *ret = x;
+    free(q);
+    return ans;
+}
+
+int main() {
+    int a[] = {1,3,-1,-3,5,3,6,7};
+    int n = 8, k = 3, size;
+
+    int *ans = maxSlidingWindow(a, n, k, &size);
+
+    for (int i = 0; i < size; i++)
+        printf("%d ", ans[i]);
+
+    free(ans);
+    return 0;
+}
