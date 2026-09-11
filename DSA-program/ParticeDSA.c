@@ -2090,3 +2090,46 @@ int main() {
     free(ans);
     return 0;
 }
+
+
+
+// LeetCode #15 — 3Sum
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b) {
+    return *(int *)a - *(int *)b;
+}
+
+int main() {
+    int a[] = {-1, 0, 1, 2, -1, -4};
+    int n = 6;
+
+    qsort(a, n, sizeof(int), cmp);
+
+    for (int i = 0; i < n - 2; i++) {
+        if (i && a[i] == a[i - 1]) continue;
+
+        int l = i + 1, r = n - 1;
+
+        while (l < r) {
+            int sum = a[i] + a[l] + a[r];
+
+            if (sum == 0) {
+                printf("[%d,%d,%d] ", a[i], a[l], a[r]);
+
+                while (l < r && a[l] == a[l + 1]) l++;
+                while (l < r && a[r] == a[r - 1]) r--;
+
+                l++;
+                r--;
+            }
+            else if (sum < 0)
+                l++;
+            else
+                r--;
+        }
+    }
+
+    return 0;
+}
