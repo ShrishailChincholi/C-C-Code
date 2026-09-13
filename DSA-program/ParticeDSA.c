@@ -2164,3 +2164,53 @@ int main() {
 
     return 0;
 }
+
+
+// LeetCode #76 — Minimum Window Substring
+
+#include <stdio.h>
+#include <string.h>
+
+char* minWindow(char* s, char* t) {
+    static char ans[10001];
+    int need[256] = {0}, have[256] = {0};
+    int required = strlen(t), formed = 0;
+    int left = 0, start = 0, min = 10002;
+
+    for (int i = 0; t[i]; i++) need[(unsigned char)t[i]]++;
+
+    for (int right = 0; s[right]; right++) {
+        unsigned char c = s[right];
+        have[c]++;
+
+        if (have[c] <= need[c])
+            formed++;
+
+        while (formed == required) {
+            if (right - left + 1 < min) {
+                min = right - left + 1;
+                start = left;
+            }
+
+            c = s[left++];
+            if (have[c] <= need[c])
+                formed--;
+
+            have[c]--;
+        }
+    }
+
+    if (min == 10002) {
+        ans[0] = '\0';
+        return ans;
+    }
+
+    memcpy(ans, s + start, min);
+    ans[min] = '\0';
+    return ans;
+}
+
+int main() {
+    printf("%s", minWindow("ADOBECODEBANC", "ABC"));
+    return 0;
+}
