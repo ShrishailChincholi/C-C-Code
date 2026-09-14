@@ -2214,3 +2214,43 @@ int main() {
     printf("%s", minWindow("ADOBECODEBANC", "ABC"));
     return 0;
 }
+
+
+
+
+// LeetCode 312 — Burst Balloons
+
+#include <stdio.h>
+
+int maxCoins(int* nums, int n) {
+    int a[n + 2], dp[n + 2][n + 2];
+
+    a[0] = a[n + 1] = 1;
+    for (int i = 1; i <= n; i++)
+        a[i] = nums[i - 1];
+
+    for (int len = 1; len <= n; len++) {
+        for (int l = 1; l + len - 1 <= n; l++) {
+            int r = l + len - 1;
+
+            for (int k = l; k <= r; k++) {
+                int coins = a[l - 1] * a[k] * a[r + 1]
+                          + dp[l][k - 1]
+                          + dp[k + 1][r];
+
+                if (coins > dp[l][r])
+                    dp[l][r] = coins;
+            }
+        }
+    }
+
+    return dp[1][n];
+}
+
+int main() {
+    int a[] = {3, 1, 5, 8};
+
+    printf("%d", maxCoins(a, 4));
+
+    return 0;
+}
