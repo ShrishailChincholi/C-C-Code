@@ -2254,3 +2254,56 @@ int main() {
 
     return 0;
 }
+
+
+// Reverse Pairs
+ #include <stdio.h>
+#include <stdlib.h>
+
+long long merge(int a[], int l, int m, int r) {
+    long long count = 0;
+    int i = l, j = m + 1, k = 0;
+    int temp[r - l + 1];
+
+    while (i <= m && j <= r) {
+        if ((long long)a[i] > 2LL * a[j]) {
+            count += m - i + 1;
+            j++;
+        } else {
+            i++;
+        }
+    }
+
+    i = l;
+    j = m + 1;
+
+    while (i <= m && j <= r)
+        temp[k++] = a[i] <= a[j] ? a[i++] : a[j++];
+
+    while (i <= m) temp[k++] = a[i++];
+    while (j <= r) temp[k++] = a[j++];
+
+    for (i = l, k = 0; i <= r; i++, k++)
+        a[i] = temp[k];
+
+    return count;
+}
+
+long long solve(int a[], int l, int r) {
+    if (l >= r) return 0;
+
+    int m = l + (r - l) / 2;
+
+    return solve(a, l, m)
+         + solve(a, m + 1, r)
+         + merge(a, l, m, r);
+}
+
+int main() {
+    int a[] = {1, 3, 2, 3, 1};
+    int n = 5;
+
+    printf("%lld", solve(a, 0, n - 1));
+
+    return 0;
+}
