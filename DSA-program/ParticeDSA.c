@@ -2307,3 +2307,71 @@ int main() {
 
     return 0;
 }
+
+
+
+// LeetCode #127 — Word Ladder
+
+#include <stdio.h>
+#include <string.h>
+
+int diff(char *a, char *b) {
+    int d = 0;
+    for (int i = 0; a[i]; i++)
+        if (a[i] != b[i]) d++;
+    return d;
+}
+
+int ladderLength(char *begin, char *end, char **words, int n) {
+    int q[n], visited[n];
+    memset(visited, 0, sizeof(visited));
+
+    int target = -1;
+
+    for (int i = 0; i < n; i++)
+        if (!strcmp(words[i], end))
+            target = i;
+
+    if (target == -1) return 0;
+
+    int front = 0, rear = 0;
+    q[rear++] = -1;
+
+    int level = 1;
+
+    while (front < rear) {
+        int size = rear - front;
+
+        while (size--) {
+            int u = q[front++];
+
+            for (int i = 0; i < n; i++) {
+                if (!visited[i] &&
+                    diff(u == -1 ? begin : words[u], words[i]) == 1) {
+
+                    if (i == target)
+                        return level + 1;
+
+                    visited[i] = 1;
+                    q[rear++] = i;
+                }
+            }
+        }
+
+        level++;
+    }
+
+    return 0;
+}
+
+int main() {
+    char *words[] = {
+        "hot", "dot", "dog", "lot", "log", "cog"
+    };
+
+    printf("%d", ladderLength(
+        "hit", "cog", words, 6
+    ));
+
+    return 0;
+}
