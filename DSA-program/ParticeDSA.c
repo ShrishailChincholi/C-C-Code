@@ -2375,3 +2375,35 @@ int main() {
 
     return 0;
 }
+
+// Largest Rectangle in Histogram
+
+#include <stdio.h>
+
+int largestRectangleArea(int *h, int n) {
+    int stack[n + 1], top = -1, ans = 0;
+
+    for (int i = 0; i <= n; i++) {
+        int cur = (i == n) ? 0 : h[i];
+
+        while (top >= 0 && h[stack[top]] > cur) {
+            int height = h[stack[top--]];
+            int width = (top < 0) ? i : i - stack[top] - 1;
+            int area = height * width;
+
+            if (area > ans) ans = area;
+        }
+
+        stack[++top] = i;
+    }
+
+    return ans;
+}
+
+int main() {
+    int h[] = {2, 1, 5, 6, 2, 3};
+
+    printf("%d", largestRectangleArea(h, 6));
+
+    return 0;
+}
