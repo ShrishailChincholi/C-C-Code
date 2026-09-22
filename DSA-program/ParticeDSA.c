@@ -2407,3 +2407,53 @@ int main() {
 
     return 0;
 }
+
+
+
+
+// LeetCode #207 — Course Schedule
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int canFinish(int n, int p[][2], int m) {
+    int *indeg = calloc(n, sizeof(int));
+    int *q = malloc(n * sizeof(int));
+    int g[n][n];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            g[i][j] = 0;
+
+    for (int i = 0; i < m; i++) {
+        g[p[i][1]][p[i][0]] = 1;
+        indeg[p[i][0]]++;
+    }
+
+    int f = 0, r = 0, count = 0;
+
+    for (int i = 0; i < n; i++)
+        if (!indeg[i]) q[r++] = i;
+
+    while (f < r) {
+        int u = q[f++];
+        count++;
+
+        for (int v = 0; v < n; v++)
+            if (g[u][v] && --indeg[v] == 0)
+                q[r++] = v;
+    }
+
+    free(indeg);
+    free(q);
+
+    return count == n;
+}
+
+int main() {
+    int p[][2] = {{1,0},{2,1},{3,2}};
+
+    printf("%s", canFinish(4, p, 3) ? "true" : "false");
+
+    return 0;
+}
