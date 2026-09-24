@@ -2457,3 +2457,33 @@ int main() {
 
     return 0;
 }
+
+
+
+// LeetCode #438 — Find All Anagrams in a String
+
+#include <stdio.h>
+#include <string.h>
+
+void findAnagrams(char *s, char *p) {
+    int need[26] = {0}, win[26] = {0};
+    int n = strlen(s), m = strlen(p);
+
+    for (int i = 0; i < m; i++)
+        need[p[i] - 'a']++;
+
+    for (int i = 0; i < n; i++) {
+        win[s[i] - 'a']++;
+
+        if (i >= m)
+            win[s[i - m] - 'a']--;
+
+        if (i >= m - 1 && !memcmp(need, win, sizeof(need)))
+            printf("%d ", i - m + 1);
+    }
+}
+
+int main() {
+    findAnagrams("cbaebabacd", "abc");
+    return 0;
+}
