@@ -85,3 +85,53 @@ int main() {
     printf("%d", minDistance("horse", "ros"));
     return 0;
 }
+
+
+// LeetCode #124 — Binary Tree Maximum Path Sum
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node *left, *right;
+} Node;
+
+int ans = -1000000000;
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int dfs(Node *root) {
+    if (!root) return 0;
+
+    int left = max(0, dfs(root->left));
+    int right = max(0, dfs(root->right));
+
+    ans = max(ans, root->val + left + right);
+
+    return root->val + max(left, right);
+}
+
+Node *newNode(int x) {
+    Node *p = malloc(sizeof(Node));
+    p->val = x;
+    p->left = p->right = NULL;
+    return p;
+}
+
+int main() {
+    Node *root = newNode(-10);
+
+    root->left = newNode(9);
+    root->right = newNode(20);
+    root->right->left = newNode(15);
+    root->right->right = newNode(7);
+
+    dfs(root);
+
+    printf("%d", ans);
+
+    return 0;
+}
