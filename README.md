@@ -1,5 +1,5 @@
 ## 💻 C Programming – 7 Days Learning Journey 🚀
-
+..
 Welcome to my **C Programming Practice Repository**!  
 This repository contains all my learning and practice from **Day 1 to Day 7**, where I explored every major concept of C programming — from basics to advanced topics — with **examples and exercises** each day.
 
