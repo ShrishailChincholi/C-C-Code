@@ -135,3 +135,73 @@ int main() {
 
     return 0;
 }
+
+
+
+
+// LeetCode #743 — Network Delay Time
+
+#include <stdio.h>
+#include <limits.h>
+
+#define INF 1000000000
+
+int networkDelayTime(int times[][3], int m, int n, int k) {
+    int g[n + 1][n + 1];
+
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            g[i][j] = INF;
+
+    for (int i = 0; i < m; i++)
+        g[times[i][0]][times[i][1]] = times[i][2];
+
+    int dist[n + 1], used[n + 1] = {0};
+
+    for (int i = 1; i <= n; i++)
+        dist[i] = INF;
+
+    dist[k] = 0;
+
+    for (int count = 1; count <= n; count++) {
+        int u = -1;
+
+        for (int i = 1; i <= n; i++)
+            if (!used[i] && (u == -1 || dist[i] < dist[u]))
+                u = i;
+
+        if (u == -1 || dist[u] == INF)
+            break;
+
+        used[u] = 1;
+
+        for (int v = 1; v <= n; v++)
+            if (g[u][v] != INF &&
+                dist[u] + g[u][v] < dist[v])
+                dist[v] = dist[u] + g[u][v];
+    }
+
+    int ans = 0;
+
+    for (int i = 1; i <= n; i++) {
+        if (dist[i] == INF)
+            return -1;
+
+        if (dist[i] > ans)
+            ans = dist[i];
+    }
+
+    return ans;
+}
+
+int main() {
+    int times[][3] = {
+        {2, 1, 1},
+        {2, 3, 1},
+        {3, 4, 1}
+    };
+
+    printf("%d", networkDelayTime(times, 3, 4, 2));
+
+    return 0;
+}
