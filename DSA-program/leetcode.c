@@ -137,8 +137,6 @@ int main() {
 }
 
 
-
-
 // LeetCode #743 — Network Delay Time
 
 #include <stdio.h>
@@ -202,6 +200,45 @@ int main() {
     };
 
     printf("%d", networkDelayTime(times, 3, 4, 2));
+
+    return 0;
+}
+
+
+
+
+// LeetCode #132 — Palindrome Partitioning II
+
+#include <stdio.h>
+#include <string.h>
+
+int minCut(char *s) {
+    int n = strlen(s);
+    int pal[n][n], dp[n + 1];
+
+    memset(pal, 0, sizeof(pal));
+
+    for (int i = 0; i <= n; i++)
+        dp[i] = i - 1;
+
+    for (int r = 0; r < n; r++) {
+        for (int l = r; l >= 0; l--) {
+            if (s[l] == s[r] &&
+                (r - l < 2 || pal[l + 1][r - 1])) {
+                pal[l][r] = 1;
+                if (dp[l] + 1 < dp[r + 1])
+                    dp[r + 1] = dp[l] + 1;
+            }
+        }
+    }
+
+    return dp[n];
+}
+
+int main(void) {
+    printf("%d\n", minCut("aab"));
+    printf("%d\n", minCut("a"));
+    printf("%d\n", minCut("abccbc"));
 
     return 0;
 }
