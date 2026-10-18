@@ -242,3 +242,41 @@ int main(void) {
 
     return 0;
 }
+
+
+// LeetCode #664 — Strange Printer
+
+#include <stdio.h>
+#include <string.h>
+
+int strangePrinter(char *s) {
+    int n = strlen(s), dp[n][n];
+
+    if (!n) return 0;
+
+    for (int i = n - 1; i >= 0; i--) {
+        dp[i][i] = 1;
+
+        for (int j = i + 1; j < n; j++) {
+            dp[i][j] = dp[i + 1][j] + 1;
+
+            for (int k = i + 1; k <= j; k++) {
+                if (s[i] == s[k]) {
+                    int cost = (k == i + 1 ? 0 : dp[i + 1][k - 1])
+                             + dp[k][j];
+
+                    if (cost < dp[i][j])
+                        dp[i][j] = cost;
+                }
+            }
+        }
+    }
+
+    return dp[0][n - 1];
+}
+
+int main(void) {
+    printf("%d\n", strangePrinter("aaabbb"));
+    printf("%d\n", strangePrinter("aba"));
+    return 0;
+}
