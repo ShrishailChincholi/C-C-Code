@@ -287,7 +287,6 @@ int main(void) {
 
 
 
-
 #include <stdio.h>
 
 int minRefuelStops(int target, int fuel, int s[][2], int n) {
@@ -341,3 +340,74 @@ int main(void) {
     return 0;
 }
 
+
+
+
+
+// LeetCode #815 — Bus Routes
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAXS 1000
+#define MAXR 500
+
+int minBuses(int routes[][MAXS], int len[], int n,
+             int source, int target) {
+    if (source == target) return 0;
+
+    int seenStop[MAXS * 2] = {0};
+    int seenBus[MAXR] = {0};
+    int q[MAXS * 2], front = 0, rear = 0, buses = 0;
+
+    q[rear++] = source;
+    seenStop[source] = 1;
+
+    while (front < rear) {
+        int end = rear;
+
+        buses++;
+
+        while (front < end) {
+            int stop = q[front++];
+
+            for (int i = 0; i < n; i++) {
+                if (seenBus[i]) continue;
+
+                int found = 0;
+                for (int j = 0; j < len[i]; j++)
+                    if (routes[i][j] == stop) {
+                        found = 1;
+                        break;
+                    }
+
+                if (!found) continue;
+                seenBus[i] = 1;
+
+                for (int j = 0; j < len[i]; j++) {
+                    int next = routes[i][j];
+
+                    if (next == target) return buses;
+
+                    if (next < MAXS * 2 && !seenStop[next]) {
+                        seenStop[next] = 1;
+                        q[rear++] = next;
+                    }
+                }
+            }
+        }
+    }
+
+    return -1;
+}
+
+int main(void) {
+    int routes[2][MAXS] = {
+        {1, 2, 7},
+        {3, 6, 7}
+    };
+    int len[] = {3, 3};
+
+    printf("%d\n", minBuses(routes, len, 2, 1, 6));
+    return 0;
+}
