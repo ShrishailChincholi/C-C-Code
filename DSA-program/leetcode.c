@@ -280,3 +280,64 @@ int main(void) {
     printf("%d\n", strangePrinter("aba"));
     return 0;
 }
+
+
+
+// LeetCode #871 — Minimum Number of Refueling Stops
+
+
+
+
+#include <stdio.h>
+
+int minRefuelStops(int target, int fuel, int s[][2], int n) {
+    int heap[n + 1], size = 0, stops = 0, i = 0;
+    long long reach = fuel;
+
+    while (reach < target) {
+        while (i < n && s[i][0] <= reach) {
+            int j = size++;
+            heap[j] = s[i++][1];
+
+            while (j > 0 && heap[(j - 1) / 2] < heap[j]) {
+                int t = heap[j];
+                heap[j] = heap[(j - 1) / 2];
+                heap[(j - 1) / 2] = t;
+                j = (j - 1) / 2;
+            }
+        }
+
+        if (size == 0) return -1;
+
+        reach += heap[0];
+        heap[0] = heap[--size];
+
+        int j = 0;
+        while (1) {
+            int l = 2 * j + 1, r = l + 1, largest = j;
+
+            if (l < size && heap[l] > heap[largest]) largest = l;
+            if (r < size && heap[r] > heap[largest]) largest = r;
+            if (largest == j) break;
+
+            int t = heap[j];
+            heap[j] = heap[largest];
+            heap[largest] = t;
+            j = largest;
+        }
+
+        stops++;
+    }
+
+    return stops;
+}
+
+int main(void) {
+    int stations[][2] = {
+        {10, 60}, {20, 30}, {30, 30}, {60, 40}
+    };
+
+    printf("%d\n", minRefuelStops(100, 10, stations, 4));
+    return 0;
+}
+
