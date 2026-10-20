@@ -411,3 +411,32 @@ int main(void) {
     printf("%d\n", minBuses(routes, len, 2, 1, 6));
     return 0;
 }
+
+
+
+
+// LeetCode #115 — Distinct Subsequences
+
+#include <stdio.h>
+#include <string.h>
+
+unsigned long long numDistinct(char *s, char *t) {
+    int m = strlen(s), n = strlen(t);
+    unsigned long long dp[n + 1];
+
+    memset(dp, 0, sizeof(dp));
+    dp[0] = 1;
+
+    for (int i = 0; i < m; i++)
+        for (int j = n; j > 0; j--)
+            if (s[i] == t[j - 1])
+                dp[j] += dp[j - 1];
+
+    return dp[n];
+}
+
+int main(void) {
+    printf("%llu\n", numDistinct("rabbbit", "rabbit"));
+    printf("%llu\n", numDistinct("babgbag", "bag"));
+    return 0;
+}
