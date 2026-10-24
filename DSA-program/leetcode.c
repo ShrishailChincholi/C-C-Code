@@ -440,3 +440,46 @@ int main(void) {
     printf("%llu\n", numDistinct("babgbag", "bag"));
     return 0;
 }
+
+
+
+// LeetCode #410 — Split Array Largest Sum
+
+#include <stdio.h>
+
+int splitArray(int *a, int n, int k) {
+    long long low = 0, high = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (a[i] > low) low = a[i];
+        high += a[i];
+    }
+
+    while (low < high) {
+        long long mid = low + (high - low) / 2;
+        long long sum = 0;
+        int parts = 1;
+
+        for (int i = 0; i < n; i++) {
+            if (sum + a[i] > mid) {
+                parts++;
+                sum = 0;
+            }
+            sum += a[i];
+        }
+
+        if (parts <= k)
+            high = mid;
+        else
+            low = mid + 1;
+    }
+
+    return (int)low;
+}
+
+int main(void) {
+    int a[] = {7, 2, 5, 10, 8};
+
+    printf("%d\n", splitArray(a, 5, 2));
+    return 0;
+}
