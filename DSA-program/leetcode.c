@@ -483,3 +483,45 @@ int main(void) {
     printf("%d\n", splitArray(a, 5, 2));
     return 0;
 }
+
+
+
+// LeetCode #174 — Dungeon Game
+
+
+#include <stdio.h>
+
+int min(int a, int b) {
+    return a < b ? a : b;
+}
+
+int calculateMinimumHP(int d[][3], int m, int n) {
+    int dp[m + 1][n + 1];
+
+    for (int i = 0; i <= m; i++)
+        for (int j = 0; j <= n; j++)
+            dp[i][j] = 1000000000;
+
+    dp[m][n - 1] = dp[m - 1][n] = 1;
+
+    for (int i = m - 1; i >= 0; i--)
+        for (int j = n - 1; j >= 0; j--)
+            dp[i][j] = max(1, min(dp[i + 1][j], dp[i][j + 1]) - d[i][j]);
+
+    return dp[0][0];
+}
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int main(void) {
+    int d[3][3] = {
+        {-2, -3,  3},
+        {-5, -10, 1},
+        {10,  30, -5}
+    };
+
+    printf("%d\n", calculateMinimumHP(d, 3, 3));
+    return 0;
+}
