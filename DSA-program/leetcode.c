@@ -525,3 +525,41 @@ int main(void) {
     printf("%d\n", calculateMinimumHP(d, 3, 3));
     return 0;
 }
+
+
+
+// LeetCode #862 — Shortest Subarray with Sum at Least K
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int shortestSubarray(int *a, int n, int k) {
+    long long p[n + 1];
+    int q[n + 1], front = 0, back = 0;
+    int ans = n + 1;
+
+    p[0] = 0;
+    for (int i = 0; i < n; i++)
+        p[i + 1] = p[i] + a[i];
+
+    for (int i = 0; i <= n; i++) {
+        while (front < back && p[i] - p[q[front]] >= k) {
+            int len = i - q[front++];
+            if (len < ans) ans = len;
+        }
+
+        while (front < back && p[i] <= p[q[back - 1]])
+            back--;
+
+        q[back++] = i;
+    }
+
+    return ans == n + 1 ? -1 : ans;
+}
+
+int main(void) {
+    int a[] = {2, -1, 2};
+
+    printf("%d\n", shortestSubarray(a, 3, 3));
+    return 0;
+}
