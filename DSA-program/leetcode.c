@@ -563,3 +563,88 @@ int main(void) {
     printf("%d\n", shortestSubarray(a, 3, 3));
     return 0;
 }
+
+
+
+
+// LeetCode #864 — Shortest Path to Get All Keys
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100
+#define STATES 64
+
+typedef struct {
+    int r, c, mask, dist;
+} Node;
+
+int shortestPathAllKeys(char grid[][MAX], int m, int n) {
+    Node q[MAX * MAX * STATES];
+    static int vis[MAX][MAX][STATES];
+
+    int sr = 0, sc = 0, keys = 0;
+    int dr[] = {-1, 1, 0, 0};
+    int dc[] = {0, 0, -1, 1};
+
+    memset(vis, 0, sizeof(vis));
+
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+            if (grid[i][j] == '@')
+                sr = i, sc = j;
+            if (grid[i][j] >= 'a' && grid[i][j] <= 'f')
+                keys |= 1 << (grid[i][j] - 'a');
+        }
+
+    int front = 0, rear = 0;
+    q[rear++] = (Node){sr, sc, 0, 0};
+    vis[sr][sc][0] = 1;
+
+    while (front < rear) {
+        Node cur = q[front++];
+
+        if (cur.mask == keys)
+            return cur.dist;
+
+        for (int d = 0; d < 4; d++) {
+            int r = cur.r + dr[d];
+            int c = cur.c + dc[d];
+            int mask = cur.mask;
+
+            if (r < 0 || r >= m || c < 0 || c >= n)
+                continue;
+
+            char ch = grid[r][c];
+
+            if (ch == '#') continue;
+
+            if (ch >= 'A' && ch <= 'F' &&
+                !(mask & (1 << (ch - 'A'))))
+                continue;
+
+            if (ch >= 'a' && ch <= 'f')
+                mask |= 1 << (ch - 'a');
+
+            if (!vis[r][c][mask]) {
+                vis[r][c][mask] = 1;
+                q[rear++] = (Node){r, c, mask, cur.dist + 1};
+            }
+        }
+    }
+
+    return -1;
+}
+
+int main(void) {
+    char grid[3][MAX] = {
+        "@.a..",
+        "###.#",
+        "b.A.B"
+    };
+
+    printf("%d\n", shortestPathAllKeys(grid, 3, 5));
+    return 0;
+}
