@@ -648,3 +648,84 @@ int main(void) {
     printf("%d\n", shortestPathAllKeys(grid, 3, 5));
     return 0;
 }
+
+
+
+// LeetCode #133 — Clone Graph
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 101
+
+typedef struct Node {
+    int val;
+    int count;
+    struct Node *neighbors[100];
+} Node;
+
+Node *visited[MAX];
+
+Node *newNode(int val) {
+    Node *p = calloc(1, sizeof(Node));
+    p->val = val;
+    return p;
+}
+
+Node *cloneGraph(Node *node) {
+    if (!node) return NULL;
+
+    if (visited[node->val])
+        return visited[node->val];
+
+    Node *copy = newNode(node->val);
+    visited[node->val] = copy;
+
+    for (int i = 0; i < node->count; i++)
+        copy->neighbors[copy->count++] =
+            cloneGraph(node->neighbors[i]);
+
+    return copy;
+}
+
+void printGraph(Node *node, int seen[]) {
+    if (!node || seen[node->val]) return;
+
+    seen[node->val] = 1;
+    printf("%d: ", node->val);
+
+    for (int i = 0; i < node->count; i++)
+        printf("%d ", node->neighbors[i]->val);
+
+    printf("\n");
+
+    for (int i = 0; i < node->count; i++)
+        printGraph(node->neighbors[i], seen);
+}
+
+int main(void) {
+    Node *a = newNode(1);
+    Node *b = newNode(2);
+    Node *c = newNode(3);
+    Node *d = newNode(4);
+
+    a->neighbors[a->count++] = b;
+    a->neighbors[a->count++] = d;
+
+    b->neighbors[b->count++] = a;
+    b->neighbors[b->count++] = c;
+
+    c->neighbors[c->count++] = b;
+    c->neighbors[c->count++] = d;
+
+    d->neighbors[d->count++] = a;
+    d->neighbors[d->count++] = c;
+
+    Node *copy = cloneGraph(a);
+
+    int seen[MAX] = {0};
+    printGraph(copy, seen);
+
+    return 0;
+}
