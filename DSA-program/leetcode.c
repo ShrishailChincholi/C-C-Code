@@ -729,3 +729,55 @@ int main(void) {
 
     return 0;
 }
+
+
+
+
+// LeetCode #97 — Interleaving String
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool isInterleave(char *s1, char *s2, char *s3) {
+    int m = strlen(s1);
+    int n = strlen(s2);
+
+    if (m + n != strlen(s3))
+        return false;
+
+    bool dp[n + 1];
+    memset(dp, false, sizeof(dp));
+
+    dp[0] = true;
+
+    for (int j = 1; j <= n; j++)
+        dp[j] = dp[j - 1] && s2[j - 1] == s3[j - 1];
+
+    for (int i = 1; i <= m; i++) {
+        dp[0] = dp[0] && s1[i - 1] == s3[i - 1];
+
+        for (int j = 1; j <= n; j++) {
+            char c = s3[i + j - 1];
+
+            dp[j] = (dp[j] && s1[i - 1] == c) ||
+                    (dp[j - 1] && s2[j - 1] == c);
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    char s1[] = "aabcc";
+    char s2[] = "dbbca";
+    char s3[] = "aadbbcbcac";
+
+    if (isInterleave(s1, s2, s3))
+        printf("True\n");
+    else
+        printf("False\n");
+
+    return 0;
+}
