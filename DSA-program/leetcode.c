@@ -781,3 +781,115 @@ int main() {
 
     return 0;
 }
+
+
+
+
+// LeetCode #407 — Trapping Rain Water II
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+typedef struct {
+    int height, row, col;
+} Node;
+
+Node heap[MAX * MAX * 4];
+int size = 0;
+
+void push(int h, int r, int c) {
+    int i = ++size;
+
+    while (i > 1 && heap[i / 2].height > h) {
+        heap[i] = heap[i / 2];
+        i /= 2;
+    }
+
+    heap[i] = (Node){h, r, c};
+}
+
+Node pop() {
+    Node result = heap[1];
+    Node last = heap[size--];
+
+    int i = 1, child;
+
+    while (i * 2 <= size) {
+        child = i * 2;
+
+        if (child + 1 <= size &&
+            heap[child + 1].height < heap[child].height)
+            child++;
+
+        if (last.height <= heap[child].height)
+            break;
+
+        heap[i] = heap[child];
+        i = child;
+    }
+
+    heap[i] = last;
+    return result;
+}
+
+int trapRainWater(int h[MAX][MAX], int m, int n) {
+    int visited[MAX][MAX] = {0};
+    int dr[] = {-1, 1, 0, 0};
+    int dc[] = {0, 0, -1, 1};
+    int water = 0;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == 0 || j == 0 || i == m - 1 || j == n - 1) {
+                if (!visited[i][j]) {
+                    push(h[i][j], i, j);
+                    visited[i][j] = 1;
+                }
+            }
+        }
+    }
+
+    while (size > 0) {
+        Node cur = pop();
+
+        for (int k = 0; k < 4; k++) {
+            int r = cur.row + dr[k];
+            int c = cur.col + dc[k];
+
+            if (r < 0 || c < 0 || r >= m || c >= n ||
+                visited[r][c])
+                continue;
+
+            visited[r][c] = 1;
+
+            if (cur.height > h[r][c])
+                water += cur.height - h[r][c];
+
+            int nextHeight = h[r][c] > cur.height
+                           ? h[r][c] : cur.height;
+
+            push(nextHeight, r, c);
+        }
+    }
+
+    return water;
+}
+
+int main() {
+    int m = 3, n = 6;
+
+    int heightMap[MAX][MAX] = {
+        {1, 4, 3, 1, 3, 2},
+        {3, 2, 1, 3, 2, 4},
+        {2, 3, 3, 2, 3, 1}
+    };
+
+    printf("Trapped Water: %d\n",
+           trapRainWater(heightMap, m, n));
+
+    return 0;
+}
