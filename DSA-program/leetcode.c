@@ -893,3 +893,78 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int width;
+    int height;
+} Envelope;
+
+int compare(const void *a, const void *b) {
+    Envelope *x = (Envelope *)a;
+    Envelope *y = (Envelope *)b;
+
+    if (x->width != y->width)
+        return x->width < y->width ? -1 : 1;
+
+    return x->height > y->height ? -1 :
+           x->height < y->height ? 1 : 0;
+}
+
+int maxEnvelopes(Envelope e[], int n) {
+    if (n <= 0)
+        return 0;
+
+    qsort(e, n, sizeof(Envelope), compare);
+
+    int *tails = malloc(n * sizeof(int));
+    if (tails == NULL)
+        return -1;
+
+    int len = 0;
+
+    for (int i = 0; i < n; i++) {
+        int left = 0, right = len;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (tails[mid] < e[i].height)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+
+        tails[left] = e[i].height;
+
+        if (left == len)
+            len++;
+    }
+
+    free(tails);
+    return len;
+}
+
+int main() {
+    Envelope e[] = {
+        {5, 4},
+        {6, 4},
+        {6, 7},
+        {2, 3}
+    };
+
+    int n = sizeof(e) / sizeof(e[0]);
+
+    printf("Maximum Nested Envelopes: %d\n",
+           maxEnvelopes(e, n));
+
+    return 0;
+}
