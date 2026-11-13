@@ -968,3 +968,128 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+#define MAXN 105
+#define MAXE 10005
+
+typedef struct {
+    int to, next;
+} Edge;
+
+typedef struct {
+    int node, color;
+} State;
+
+Edge graph[2][MAXE];
+int head[2][MAXN];
+int edgeCount[2];
+int dist[MAXN][2];
+
+void addEdge(int color, int u, int v) {
+    int id = edgeCount[color]++;
+
+    graph[color][id].to = v;
+    graph[color][id].next = head[color][u];
+    head[color][u] = id;
+}
+
+void shortestAlternatingPaths(
+    int n,
+    int red[][2], int redCount,
+    int blue[][2], int blueCount,
+    int result[]
+) {
+    for (int i = 0; i < n; i++) {
+        head[0][i] = -1;
+        head[1][i] = -1;
+        dist[i][0] = -1;
+        dist[i][1] = -1;
+    }
+
+    edgeCount[0] = edgeCount[1] = 0;
+
+    for (int i = 0; i < redCount; i++)
+        addEdge(0, red[i][0], red[i][1]);
+
+    for (int i = 0; i < blueCount; i++)
+        addEdge(1, blue[i][0], blue[i][1]);
+
+    State queue[2 * MAXN];
+    int front = 0, rear = 0;
+
+    queue[rear++] = (State){0, 0};
+    queue[rear++] = (State){0, 1};
+
+    dist[0][0] = 0;
+    dist[0][1] = 0;
+
+    while (front < rear) {
+        State cur = queue[front++];
+
+        int nextColor = 1 - cur.color;
+
+        for (int e = head[nextColor][cur.node];
+             e != -1;
+             e = graph[nextColor][e].next) {
+
+            int v = graph[nextColor][e].to;
+
+            if (dist[v][nextColor] == -1) {
+                dist[v][nextColor] =
+                    dist[cur.node][cur.color] + 1;
+
+                queue[rear++] = (State){v, nextColor};
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        int a = dist[i][0];
+        int b = dist[i][1];
+
+        if (a == -1)
+            result[i] = b;
+        else if (b == -1)
+            result[i] = a;
+        else
+            result[i] = a < b ? a : b;
+    }
+}
+
+int main() {
+    int n = 5;
+
+    int red[][2] = {
+        {0, 1},
+        {2, 3}
+    };
+
+    int blue[][2] = {
+        {1, 2},
+        {3, 4}
+    };
+
+    int result[MAXN];
+
+    shortestAlternatingPaths(
+        n, red, 2, blue, 2, result
+    );
+
+    printf("Shortest Distances: ");
+
+    for (int i = 0; i < n; i++)
+        printf("%d ", result[i]);
+
+    printf("\n");
+
+    return 0;
+}
