@@ -1093,3 +1093,85 @@ int main() {
 
     return 0;
 }
+
+
+
+
+//  LeetCode #1235 — Maximum Profit in Job Scheduling
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 1000
+
+typedef struct {
+    int start, end, profit;
+} Job;
+
+int compare(const void *a, const void *b) {
+    Job *x = (Job *)a;
+    Job *y = (Job *)b;
+
+    return (x->end > y->end) - (x->end < y->end);
+}
+
+int findPrevious(Job jobs[], int index) {
+    int left = 0, right = index - 1;
+    int answer = -1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (jobs[mid].end <= jobs[index].start) {
+            answer = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return answer;
+}
+
+int jobScheduling(int start[], int end[],
+                  int profit[], int n) {
+
+    Job jobs[MAX];
+
+    for (int i = 0; i < n; i++) {
+        jobs[i].start = start[i];
+        jobs[i].end = end[i];
+        jobs[i].profit = profit[i];
+    }
+
+    qsort(jobs, n, sizeof(Job), compare);
+
+    int dp[MAX + 1] = {0};
+
+    for (int i = 1; i <= n; i++) {
+        int prev = findPrevious(jobs, i - 1);
+
+        int take = jobs[i - 1].profit + dp[prev + 1];
+        int skip = dp[i - 1];
+
+        dp[i] = take > skip ? take : skip;
+    }
+
+    return dp[n];
+}
+
+int main() {
+    int start[]  = {1, 2, 3, 3};
+    int end[]    = {3, 4, 5, 6};
+    int profit[] = {50, 10, 40, 70};
+
+    int n = sizeof(start) / sizeof(start[0]);
+
+    printf("Maximum Profit: %d\n",
+           jobScheduling(start, end, profit, n));
+
+    return 0;
+}
