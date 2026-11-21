@@ -1255,3 +1255,54 @@ int main() {
     return 0;
 }
 
+
+
+
+
+// LeetCode #995 — Minimum Number of K Consecutive Bit Flips
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int minKBitFlips(int nums[], int n, int k) {
+    int *flipped = calloc(n, sizeof(int));
+
+    if (flipped == NULL)
+        return -1;
+
+    int active = 0;
+    int operations = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        if (i >= k)
+            active ^= flipped[i - k];
+
+        if ((nums[i] ^ active) == 0) {
+
+            if (i + k > n) {
+                free(flipped);
+                return -1;
+            }
+
+            active ^= 1;
+            flipped[i] = 1;
+            operations++;
+        }
+    }
+
+    free(flipped);
+    return operations;
+}
+
+int main() {
+    int nums[] = {0, 1, 0};
+    int n = sizeof(nums) / sizeof(nums[0]);
+    int k = 1;
+
+    printf("Minimum Flips: %d\n",
+           minKBitFlips(nums, n, k));
+
+    return 0;
+}
