@@ -1306,3 +1306,57 @@ int main() {
 
     return 0;
 }
+
+
+
+// LeetCode #44 — Wildcard Matching
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool isMatch(char *s, char *p) {
+    int m = strlen(s);
+    int n = strlen(p);
+
+    bool dp[n + 1];
+    memset(dp, false, sizeof(dp));
+
+    dp[0] = true;
+
+    for (int j = 1; j <= n; j++)
+        dp[j] = dp[j - 1] && p[j - 1] == '*';
+
+    for (int i = 1; i <= m; i++) {
+        bool prev = dp[0];
+        dp[0] = false;
+
+        for (int j = 1; j <= n; j++) {
+            bool old = dp[j];
+
+            if (p[j - 1] == '*')
+                dp[j] = dp[j] || dp[j - 1];
+            else
+                dp[j] = prev &&
+                    (p[j - 1] == '?' || p[j - 1] == s[i - 1]);
+
+            prev = old;
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    char s[] = "adceb";
+    char p[] = "*a*b";
+
+    if (isMatch(s, p))
+        printf("Match Found\n");
+    else
+        printf("No Match\n");
+
+    return 0;
+}
