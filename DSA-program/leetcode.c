@@ -1360,3 +1360,55 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+// LeetCode 135
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int candy(int ratings[], int n) {
+    if (n == 0)
+        return 0;
+
+    int *candies = malloc(n * sizeof(int));
+
+    if (candies == NULL)
+        return -1;
+
+    for (int i = 0; i < n; i++)
+        candies[i] = 1;
+
+    for (int i = 1; i < n; i++) {
+        if (ratings[i] > ratings[i - 1])
+            candies[i] = candies[i - 1] + 1;
+    }
+
+    for (int i = n - 2; i >= 0; i--) {
+        if (ratings[i] > ratings[i + 1] &&
+            candies[i] <= candies[i + 1]) {
+            candies[i] = candies[i + 1] + 1;
+        }
+    }
+
+    int total = 0;
+
+    for (int i = 0; i < n; i++)
+        total += candies[i];
+
+    free(candies);
+    return total;
+}
+
+int main() {
+    int ratings[] = {1, 0, 2};
+    int n = sizeof(ratings) / sizeof(ratings[0]);
+
+    printf("Minimum Candies: %d\n", candy(ratings, n));
+
+    return 0;
+}
