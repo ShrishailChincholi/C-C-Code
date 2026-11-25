@@ -1412,3 +1412,77 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+//  LeetCode #403
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 2000
+
+int canCross(int stones[], int n) {
+    if (n < 2 || stones[1] != 1)
+        return n == 1;
+
+    int dp[MAX][MAX] = {0};
+
+    dp[1][1] = 1;
+
+    for (int i = 1; i < n; i++) {
+        for (int k = 1; k < n; k++) {
+
+            if (!dp[i][k])
+                continue;
+
+            for (int jump = k - 1; jump <= k + 1; jump++) {
+                if (jump <= 0)
+                    continue;
+
+                int target = stones[i] + jump;
+
+                int left = i + 1, right = n - 1;
+
+                while (left <= right) {
+                    int mid = left + (right - left) / 2;
+
+                    if (stones[mid] == target) {
+                        dp[mid][jump] = 1;
+                        break;
+                    }
+
+                    if (stones[mid] < target)
+                        left = mid + 1;
+                    else
+                        right = mid - 1;
+                }
+            }
+        }
+    }
+
+    for (int k = 1; k < n; k++) {
+        if (dp[n - 1][k])
+            return 1;
+    }
+
+    return 0;
+}
+
+int main() {
+    int stones[] = {0, 1, 3, 5, 6, 8, 12, 17};
+    int n = sizeof(stones) / sizeof(stones[0]);
+
+    if (canCross(stones, n))
+        printf("Frog Can Cross\n");
+    else
+        printf("Frog Cannot Cross\n");
+
+    return 0;
+}
