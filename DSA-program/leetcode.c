@@ -1486,3 +1486,117 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+//  LeetCode #778
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 100
+#define MAX 10005
+
+typedef struct {
+    int time, x, y;
+} Node;
+
+Node heap[MAX];
+int size = 0;
+
+void push(int t, int x, int y) {
+    int i = ++size;
+
+    while (i > 1 && heap[i / 2].time > t) {
+        heap[i] = heap[i / 2];
+        i /= 2;
+    }
+
+    heap[i] = (Node){t, x, y};
+}
+
+Node pop() {
+    Node result = heap[1];
+    Node last = heap[size--];
+
+    int i = 1;
+
+    while (i * 2 <= size) {
+        int child = i * 2;
+
+        if (child + 1 <= size &&
+            heap[child + 1].time < heap[child].time)
+            child++;
+
+        if (last.time <= heap[child].time)
+            break;
+
+        heap[i] = heap[child];
+        i = child;
+    }
+
+    heap[i] = last;
+    return result;
+}
+
+int swimInWater(int grid[N][N], int n) {
+    int visited[N][N] = {0};
+
+    int dx[] = {-1, 1, 0, 0};
+    int dy[] = {0, 0, -1, 1};
+
+    push(grid[0][0], 0, 0);
+
+    while (size > 0) {
+        Node cur = pop();
+
+        int x = cur.x;
+        int y = cur.y;
+
+        if (visited[x][y])
+            continue;
+
+        visited[x][y] = 1;
+
+        if (x == n - 1 && y == n - 1)
+            return cur.time;
+
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
+
+            if (nx < 0 || ny < 0 ||
+                nx >= n || ny >= n ||
+                visited[nx][ny])
+                continue;
+
+            int nextTime = cur.time > grid[nx][ny]
+                         ? cur.time : grid[nx][ny];
+
+            push(nextTime, nx, ny);
+        }
+    }
+
+    return -1;
+}
+
+int main() {
+    int n = 2;
+
+    int grid[N][N] = {
+        {0, 2},
+        {1, 3}
+    };
+
+    printf("Minimum Swimming Time: %d\n",
+           swimInWater(grid, n));
+
+    return 0;
+}
